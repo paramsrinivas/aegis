@@ -100,6 +100,7 @@ Uvicorn
 
 Docker + Docker Compose
 
-Prometheus / Grafana 
+Prometheus / Grafana (optional)
 
 Matplotlib, Pandas for analysis
+
