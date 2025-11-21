@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
+
+  manager:
+    build:
+      context: ../manager
+    command: ["python", "manager.py"]
+    ports:
+      - "8001:8001"
+    depends_on:
+      - prometheus
+
+  router:
+    build:
+      context: ../router
+    command: ["python", "router.py"]
+    ports:
+      - "8000:8000"
+    depends_on:
+      - manager
+
+  backend1:
+    build:
+      context: ../backend
+    command: ["python", "app.py", "--port", "8101", "--latency", "60", "--jitter", "20", "--error", "0.01"]
+    ports:
+      - "8101:8101"
+
+  backend2:
+    build:
+      context: ../backend
+    command: ["python", "app.py", "--port", "8102", "--latency", "250", "--jitter", "80", "--error", "0.03"]
+    ports:
+      - "8102:8102"
+
+  backend3:
+    build:
+      context: ../backend
+    command: ["python", "app.py", "--port", "8103", "--latency", "100", "--jitter", "30", "--error", "0.005"]
+    ports:
+      - "8103:8103"

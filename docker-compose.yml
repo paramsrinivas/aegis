@@ -1,0 +1,141 @@
+services:
+  manager:
+    build: ./manager
+    container_name: manager
+    volumes:
+      - ./manager/manager.py:/app/manager.py
+      - ./requirements.txt:/app/requirements.txt
+    working_dir: /app
+    command: ["uvicorn", "manager:app", "--host", "0.0.0.0", "--port", "8001", "--loop", "asyncio", "--workers", "1"]
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/weights"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    networks:
+      - aegisnet
+
+
+
+  router:
+    build: .
+    container_name: aegis_router
+    volumes:
+      - ./router.py:/app/router.py
+      - ./router_poll_weights.py:/app/router_poll_weights.py
+      - ./requirements.txt:/app/requirements.txt
+    working_dir: /app
+    command: ["python", "-m", "uvicorn", "router:app", "--host", "0.0.0.0", "--port", "8000", "--loop", "asyncio"]
+    depends_on:
+      - manager
+      - backend1
+      - backend2
+      - backend3
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    networks:
+      - aegisnet
+
+  backend1:
+    build: .
+    container_name: backend1
+    volumes:
+      - ./backend.py:/app/backend.py
+      - ./requirements.txt:/app/requirements.txt
+    working_dir: /app
+    environment:
+      - BACKEND_NAME=backend1
+      - PORT=8101
+      - MEAN_MS=30
+      - STD_MS=5
+      - FAIL_RATE=0.0
+    command: ["python", "backend.py"]
+    ports:
+      - "8101:8101"
+    restart: unless-stopped
+    networks:
+      - aegisnet
+
+  backend2:
+    build: .
+    container_name: backend2
+    volumes:
+      - ./backend.py:/app/backend.py
+      - ./requirements.txt:/app/requirements.txt
+    working_dir: /app
+    environment:
+      - BACKEND_NAME=backend2
+      - PORT=8102
+      - MEAN_MS=120
+      - STD_MS=40
+      - FAIL_RATE=0.05
+    command: ["python", "backend.py"]
+    ports:
+      - "8102:8102"
+    restart: unless-stopped
+    networks:
+      - aegisnet
+
+  backend3:
+    build: .
+    container_name: backend3
+    volumes:
+      - ./backend.py:/app/backend.py
+      - ./requirements.txt:/app/requirements.txt
+    working_dir: /app
+    environment:
+      - BACKEND_NAME=backend3
+      - PORT=8103
+      - MEAN_MS=40
+      - STD_MS=10
+      - FAIL_RATE=0.0
+    command: ["python", "backend.py"]
+    ports:
+      - "8103:8103"
+    restart: unless-stopped
+    networks:
+      - aegisnet
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aegis_prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - aegisnet
+
+  grafana:
+    container_name: aegis_grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
+    image: grafana/grafana:latest
+    networks:
+      aegisnet: null
+    ports:
+      - mode: ingress
+        target: 3000
+        published: "3000"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+networks:
+  aegisnet:
+    driver: bridge
+

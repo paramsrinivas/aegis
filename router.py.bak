@@ -1,0 +1,88 @@
+# router.py
+import traceback
+from typing import Dict, Any
+
+import httpx
+from fastapi import FastAPI
+
+app = FastAPI()
+
+# ---- config: adjust if your docker-compose service name is different ----
+MANAGER_SERVICE = "manager"     # use "manager" if your compose service is named 'manager'
+MANAGER_PORT = 8001
+# backends must be reachable from router container by hostname (service name)
+BACKEND_PORTS = {"backend1": 8101, "backend2": 8102, "backend3": 8103}
+# -----------------------------------------------------------------------
+
+@app.on_event("startup")
+async def startup_event():
+    """
+    Create one AsyncClient on startup and store on app.state.
+    We set a sensible timeout and allow redirects off by default.
+    """
+    app.state.http = httpx.AsyncClient(timeout=httpx.Timeout(10.0, connect=5.0))
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """
+    Close the shared client cleanly when the app shuts down.
+    """
+    client = getattr(app.state, "http", None)
+    if client:
+        await client.aclose()
+
+async def get_weights() -> Dict[str, Any]:
+    """
+    Query the manager service for weights. Returns parsed JSON.
+    Raises for non-2xx responses.
+    """
+    url = f"http://{MANAGER_SERVICE}:{MANAGER_PORT}/weights"
+    resp = await app.state.http.get(url)
+    resp.raise_for_status()
+    return resp.json()
+
+def pick_backend(weights: Dict[str, Any]) -> str:
+    """
+    Decide which backend to call. This is an example:
+    choose the first healthy backend from BACKEND_PORTS keys.
+    Replace with your real routing/weighted logic.
+    Returns a 'host:port' string reachable from router container.
+    """
+    for name in BACKEND_PORTS:
+        info = weights.get(name)
+        if info and info.get("healthy"):
+            return f"{name}:{BACKEND_PORTS[name]}"
+    # fallback to first backend if nothing is healthy
+    first = next(iter(BACKEND_PORTS.items()))
+    return f"{first[0]}:{first[1]}"
+
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
+
+@app.get("/predict")
+async def predict():
+    """
+    Example predict handler:
+    1. queries manager for weights
+    2. picks a backend
+    3. forwards /predict to that backend and returns JSON body
+    """
+    try:
+        weights = await get_weights()
+        backend = pick_backend(weights)
+
+        # Forward to backend's /predict (GET in this example).
+        # If your backend expects POST or a JSON body, change accordingly.
+        resp = await app.state.http.get(f"http://{backend}/predict")
+        resp.raise_for_status()
+
+        # return backend JSON as response
+        return resp.json()
+
+    except Exception as e:
+        # Print full traceback to container logs for easier debugging
+        traceback.print_exc()
+        # Return a simple error JSON to client
+        return {"error": str(e)}
+

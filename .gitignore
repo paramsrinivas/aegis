@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# macOS system files
+.DS_Store
+
+# Docker local stuff
+*.log
+**/.docker/
+
+# Bench + analysis output
+bench/*.csv
+analysis/*.png
+results/
+tmp/
+
+# Large archives
+*.zip
+*.tar
+*.tar.gz

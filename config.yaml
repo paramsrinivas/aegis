@@ -1,0 +1,9 @@
+backends:
+  - backend1
+  - backend2
+  - backend3
+ewma_alpha: 0.2
+health_decay_secs: 10
+health_penalty: 0.2
+prometheus:
+  scrape_interval: 5s

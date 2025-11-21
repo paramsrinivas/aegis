@@ -1,0 +1,30 @@
+{
+  "id": null,
+  "uid": "aegis-1",
+  "title": "Aegis Overview",
+  "tags": [],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type":"graph",
+      "title":"Backend EWMA latency (ms)",
+      "gridPos":{"h":8,"w":24,"x":0,"y":0},
+      "targets":[
+        {"expr":"aegis_backend_lat_ms{backend=\"backend1\"}","refId":"A"},
+        {"expr":"aegis_backend_lat_ms{backend=\"backend2\"}","refId":"B"},
+        {"expr":"aegis_backend_lat_ms{backend=\"backend3\"}","refId":"C"}
+      ]
+    },
+    {
+      "type":"graph",
+      "title":"Router backend choices",
+      "gridPos":{"h":8,"w":24,"x":0,"y":8},
+      "targets":[
+        {"expr":"router_backend_chosen_total","refId":"A"}
+      ]
+    }
+  ],
+  "time":{"from":"now-1h","to":"now"}
+}
