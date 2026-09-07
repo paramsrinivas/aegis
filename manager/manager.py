@@ -50,6 +50,10 @@ async def probe_loop():
                 weights_gauge.labels(name).set(w)
             await asyncio.sleep(1.0)
 
+@app.on_event("startup")
+async def start_probe_loop():
+    asyncio.create_task(probe_loop())
+
 @app.get("/weights")
 def weights():
     return {name: {"ewma_ms": state[name]["ewma"], "healthy": state[name]["healthy"]} for name in state}
@@ -59,6 +63,4 @@ def metrics():
     return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.create_task(probe_loop())
     uvicorn.run(app, host="0.0.0.0", port=8001)
