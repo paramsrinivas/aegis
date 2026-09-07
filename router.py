@@ -1,76 +1,70 @@
-# router_fixed.py (with Prometheus metrics)
-import traceback
-import httpx
+# router/router.py
 import time
-from fastapi import FastAPI, Response
-from manager_client import ManagerClient
-import asyncio
-from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+from fastapi import FastAPI, Request
+import uvicorn
+import httpx
+from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
+from starlette.responses import Response
+import random
 
 app = FastAPI()
-MANAGER_HOST = "manager"
-MANAGER_PORT = 8001
-BACKEND_PORTS = {"backend1": 8101, "backend2": 8102, "backend3": 8103}
+REQUESTS = Counter("router_requests_total", "Total incoming requests")
+FAILED = Counter("router_failed_total", "Failed forwarded requests")
+LATENCY = Histogram("router_latency_seconds", "Router e2e latency seconds")
+BACKEND_CHOSEN = Counter("router_backend_chosen_total", "Which backend chosen", ["backend"])
+ROUTER_QUEUE = Gauge("router_queue_depth", "Router queue depth")
 
-# Prometheus metrics
-REQ_LATENCY = Histogram('aegis_router_request_latency_ms', 'Request latency in milliseconds', ['endpoint'])
-REQ_COUNT = Counter('aegis_router_requests_total', 'Total requests', ['endpoint', 'status'])
+MANAGER_URL = "http://manager:8001"
 
-@app.on_event('startup')
-async def startup():
-    app.state.http = httpx.AsyncClient(timeout=10.0)
-    app.state.manager_client = ManagerClient(host=MANAGER_HOST, port=MANAGER_PORT)
+mapping = {"backend1": "http://backend1:8101", "backend2": "http://backend2:8102", "backend3": "http://backend3:8103"}
 
-@app.on_event('shutdown')
-async def shutdown():
-    try:
-        await app.state.http.aclose()
-    except Exception:
-        pass
-    try:
-        await app.state.manager_client.close()
-    except Exception:
-        pass
+async def get_weights():
+    async with httpx.AsyncClient() as client:
+        try:
+            r = await client.get(MANAGER_URL + "/weights", timeout=2.0)
+            return r.json()
+        except Exception:
+            return None
 
-def choose_backend(weights):
-    healthy = [k for k,v in weights.items() if v.get('healthy',0)]
-    if not healthy:
-        return None
-    return healthy[0]
+async def select_backend(weights):
+    if not weights:
+        return random.choice(list(mapping.keys()))
+    invs = {}
+    total = 0.0
+    for name, v in weights.items():
+        ewma = v.get("ewma_ms") or 1000.0
+        healthy = v.get("healthy", 1)
+        inv = (1.0/ewma) if healthy==1 else 0.0001
+        invs[name] = inv
+        total += inv
+    r = random.random()*total
+    upto = 0.0
+    for name, inv in invs.items():
+        upto += inv
+        if r <= upto:
+            return name
+    return list(invs.keys())[0]
 
-@app.get('/healthz')
-async def healthz():
-    REQ_COUNT.labels(endpoint='/healthz', status='200').inc()
-    return {'status': 'ok'}
+@app.get("/predict")
+async def predict(request: Request):
+    REQUESTS.inc()
+    start = time.time()
+    weights = await get_weights()
+    backend_name = await select_backend(weights)
+    BACKEND_CHOSEN.labels(backend_name).inc()
+    url = mapping[backend_name] + "/infer"
+    async with httpx.AsyncClient(timeout=5.0) as client:
+        try:
+            r = await client.get(url, timeout=5.0)
+            LATENCY.observe(time.time() - start)
+            return r.json()
+        except Exception as e:
+            FAILED.inc()
+            return {"error": "backend failure", "detail": str(e)}
 
-@app.get('/metrics')
-async def metrics():
-    # Expose Prometheus metrics
-    data = generate_latest()
-    return Response(content=data, media_type=CONTENT_TYPE_LATEST)
+@app.get("/metrics")
+def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
-@app.get('/predict')
-async def predict():
-    start = time.perf_counter()
-    endpoint = '/predict'
-    try:
-        mc = app.state.manager_client
-        weights = await mc.get_weights()
-        backend = choose_backend(weights)
-        if not backend:
-            REQ_COUNT.labels(endpoint=endpoint, status='503').inc()
-            return {'error':'no backend available'}
-        port = BACKEND_PORTS.get(backend, 8101)
-        resp = await app.state.http.get(f'http://{backend}:{port}/predict', timeout=10.0)
-        resp.raise_for_status()
-        result = resp.json()
-        latency_ms = (time.perf_counter() - start) * 1000.0
-        REQ_LATENCY.labels(endpoint=endpoint).observe(latency_ms)
-        REQ_COUNT.labels(endpoint=endpoint, status=str(resp.status_code)).inc()
-        return result
-    except Exception as e:
-        traceback.print_exc()
-        latency_ms = (time.perf_counter() - start) * 1000.0
-        REQ_LATENCY.labels(endpoint=endpoint).observe(latency_ms)
-        REQ_COUNT.labels(endpoint=endpoint, status='500').inc()
-        return {'error': str(e)}
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
