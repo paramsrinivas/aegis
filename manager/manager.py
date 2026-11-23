@@ -29,6 +29,7 @@ async def probe_loop():
                 try:
                     t0 = time.time()
                     r = await client.get(b["url"] + "/infer", timeout=2.0)
+                    r.raise_for_status()
                     latency = (time.time() - t0) * 1000
                     prev = state[name]["ewma"]
                     state[name]["ewma"] = latency if prev is None else (EWMA_ALPHA*latency + (1-EWMA_ALPHA)*prev)
