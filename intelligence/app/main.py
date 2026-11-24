@@ -139,6 +139,32 @@ async def explain(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False))
         incident,
     )
 
+    if os.getenv("AEGIS_AGENT_MODE", "off") == "adk":
+        from app.agent_service import explain_with_adk
+
+        result = await explain_with_adk(incident)
+
+        runbooks = result.pop("runbooks")
+        retrieval_metadata = result.pop("retrieval")
+
+        return {
+            "incident": incident,
+            "runbooks": [
+                {
+                    "id": r["id"],
+                    "title": r["title"],
+                    "source": r["source"],
+                }
+                for r in runbooks
+            ],
+            **result,
+            **(
+                {"retrieval": retrieval_metadata}
+                if retrieval_metadata is not None
+                else {}
+            ),
+        }
+
     from app.rag_service import select_runbooks
     runbooks, retrieval_metadata = await run_in_threadpool(
         select_runbooks, incident,
