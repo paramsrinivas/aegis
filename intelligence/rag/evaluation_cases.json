@@ -1,0 +1,460 @@
+[
+  {
+    "id": "exact-01",
+    "group": "exact",
+    "query": "EWMA backend latency increased",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:latency"
+    ]
+  },
+  {
+    "id": "exact-02",
+    "group": "exact",
+    "query": "CPU memory worker utilization resource saturation",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation"
+    ]
+  },
+  {
+    "id": "exact-03",
+    "group": "exact",
+    "query": "database connection pool dependency latency",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency"
+    ]
+  },
+  {
+    "id": "exact-04",
+    "group": "exact",
+    "query": "queue depth worker concurrency request queueing",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing"
+    ]
+  },
+  {
+    "id": "exact-05",
+    "group": "exact",
+    "query": "unhealthy backend health endpoint logs",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:unhealthy"
+    ]
+  },
+  {
+    "id": "exact-06",
+    "group": "exact",
+    "query": "health endpoint HTTP status code response body",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "exact-07",
+    "group": "exact",
+    "query": "network connection refused DNS resolution",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "exact-08",
+    "group": "exact",
+    "query": "readiness liveness initialization dependencies",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:readiness-failures"
+    ]
+  },
+  {
+    "id": "exact-09",
+    "group": "exact",
+    "query": "missing telemetry EWMA unknown latency",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:missing-telemetry"
+    ]
+  },
+  {
+    "id": "exact-10",
+    "group": "exact",
+    "query": "async task scheduling manager startup probe",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-scheduling"
+    ]
+  },
+  {
+    "id": "exact-11",
+    "group": "exact",
+    "query": "probe configured timeout elapsed duration",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "exact-12",
+    "group": "exact",
+    "query": "last successful probe timestamp stale measurement",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "paraphrase-01",
+    "group": "paraphrase",
+    "query": "Requests became slower across the replicas",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:latency"
+    ]
+  },
+  {
+    "id": "paraphrase-02",
+    "group": "paraphrase",
+    "query": "The workers seem maxed out by processing demand",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation"
+    ]
+  },
+  {
+    "id": "paraphrase-03",
+    "group": "paraphrase",
+    "query": "Responses are waiting on an external service",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency"
+    ]
+  },
+  {
+    "id": "paraphrase-04",
+    "group": "paraphrase",
+    "query": "New requests pile up before being handled",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing"
+    ]
+  },
+  {
+    "id": "paraphrase-05",
+    "group": "paraphrase",
+    "query": "The service is failing its basic health assessment",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:unhealthy"
+    ]
+  },
+  {
+    "id": "paraphrase-06",
+    "group": "paraphrase",
+    "query": "The status URL responds with a server error",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "paraphrase-07",
+    "group": "paraphrase",
+    "query": "The manager cannot establish a socket connection",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "paraphrase-08",
+    "group": "paraphrase",
+    "query": "The process started but cannot yet take work",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:readiness-failures"
+    ]
+  },
+  {
+    "id": "paraphrase-09",
+    "group": "paraphrase",
+    "query": "No recent speed measurements are available",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:missing-telemetry"
+    ]
+  },
+  {
+    "id": "paraphrase-10",
+    "group": "paraphrase",
+    "query": "Background checks never began after startup",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-scheduling"
+    ]
+  },
+  {
+    "id": "paraphrase-11",
+    "group": "paraphrase",
+    "query": "Monitoring requests expire before completion",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "paraphrase-12",
+    "group": "paraphrase",
+    "query": "The chart shows old rather than fresh measurements",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "mixed-01",
+    "group": "mixed",
+    "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation"
+    ]
+  },
+  {
+    "id": "mixed-02",
+    "group": "mixed",
+    "query": "Slow responses coincide with database calls waiting for connections",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency"
+    ]
+  },
+  {
+    "id": "mixed-03",
+    "group": "mixed",
+    "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing"
+    ]
+  },
+  {
+    "id": "mixed-04",
+    "group": "mixed",
+    "query": "HTTP 503 from health route while other application endpoints respond",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "mixed-05",
+    "group": "mixed",
+    "query": "Health probe reports connection refused and name resolution failures",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "mixed-06",
+    "group": "mixed",
+    "query": "Last EWMA timestamp is old despite a previously valid sample",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "multi-01",
+    "group": "multi",
+    "query": "CPU contention and a failing health endpoint",
+    "tags": [
+      "high_latency",
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:resource-saturation",
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "multi-02",
+    "group": "multi",
+    "query": "Slow dependency calls and manager probe timeouts",
+    "tags": [
+      "high_latency",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency",
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "multi-03",
+    "group": "multi",
+    "query": "Backend network connection failures and stale EWMA timestamps",
+    "tags": [
+      "unhealthy",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity",
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "multi-04",
+    "group": "multi",
+    "query": "Request queue growth plus failed health endpoint status",
+    "tags": [
+      "high_latency",
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:request-queueing",
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "multi-05",
+    "group": "multi",
+    "query": "Probe task did not start and the backend is not ready to serve",
+    "tags": [
+      "unknown_latency",
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:probe-scheduling",
+      "runbook:readiness-failures"
+    ]
+  },
+  {
+    "id": "multi-06",
+    "group": "multi",
+    "query": "Elevated latency and missing telemetry in different replicas",
+    "tags": [
+      "high_latency",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:latency",
+      "runbook:missing-telemetry"
+    ]
+  },
+  {
+    "id": "negative-01",
+    "group": "negative",
+    "query": "backend latency",
+    "tags": [],
+    "relevant": []
+  },
+  {
+    "id": "negative-02",
+    "group": "negative",
+    "query": "health endpoint failure",
+    "tags": [
+      "unsupported_issue"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "negative-03",
+    "group": "negative",
+    "query": "manager telemetry",
+    "tags": [
+      "not_a_real_issue"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "negative-04",
+    "group": "negative",
+    "query": "resource saturation",
+    "tags": [
+      "unrecognized"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "negative-05",
+    "group": "negative",
+    "query": "not a known symptom",
+    "tags": [],
+    "relevant": []
+  },
+  {
+    "id": "negative-06",
+    "group": "negative",
+    "query": "probe timeout",
+    "tags": [
+      "unrecognized"
+    ],
+    "relevant": []
+  }
+]

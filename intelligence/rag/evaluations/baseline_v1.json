@@ -1,0 +1,2714 @@
+{
+  "metadata": {
+    "cases": 42,
+    "documents": 12,
+    "model": "gemini-embedding-001",
+    "scope": "synthetic curated runbook retrieval; not production incident accuracy",
+    "shared_embedding_mean_ms": 431.14069402993965,
+    "active_embedding_requests": 36,
+    "latencies": "Sequential timings; hybrid sums the component stages; not concurrent end-to-end timing"
+  },
+  "summary": {
+    "overlap": {
+      "positive_cases": 36,
+      "negative_cases": 6,
+      "hit_at_1": 0.6666666666666666,
+      "recall_at_3": 0.8472222222222222,
+      "mrr": 0.7731481481481481,
+      "negative_rejection_rate": 1,
+      "tag_leakage_count": 0,
+      "mean_latency_ms": 0.23236828911606044,
+      "median_latency_ms": 0.2493819920346141,
+      "p95_latency_ms": 0.502763083204627
+    },
+    "fts": {
+      "positive_cases": 36,
+      "negative_cases": 6,
+      "hit_at_1": 0.2777777777777778,
+      "recall_at_3": 0.3055555555555556,
+      "mrr": 0.2916666666666667,
+      "negative_rejection_rate": 1,
+      "tag_leakage_count": 0,
+      "mean_latency_ms": 1.061152616914894,
+      "median_latency_ms": 0.8851069724187255,
+      "p95_latency_ms": 1.7329220427200198
+    },
+    "semantic": {
+      "positive_cases": 36,
+      "negative_cases": 6,
+      "hit_at_1": 0.8333333333333334,
+      "recall_at_3": 0.9444444444444444,
+      "mrr": 0.8935185185185185,
+      "negative_rejection_rate": 1,
+      "tag_leakage_count": 0,
+      "mean_latency_ms": 372.6102445313397,
+      "median_latency_ms": 415.75957904569805,
+      "p95_latency_ms": 517.7664710208774
+    },
+    "hybrid": {
+      "positive_cases": 36,
+      "negative_cases": 6,
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9444444444444444,
+      "mrr": 0.875,
+      "negative_rejection_rate": 1,
+      "tag_leakage_count": 0,
+      "mean_latency_ms": 373.713161131101,
+      "median_latency_ms": 416.26146755879745,
+      "p95_latency_ms": 518.952836166136
+    }
+  },
+  "cases": {
+    "overlap": [
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:dependency-latency",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 0.10404398199170828,
+        "case_id": "exact-01",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 0.2727159298956394,
+        "case_id": "exact-02",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 0.33259205520153046,
+        "case_id": "exact-03",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 0.2722580684348941,
+        "case_id": "exact-04",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 0.1737968996167183,
+        "case_id": "exact-05",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 0.1775459386408329,
+        "case_id": "exact-06",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 0.2775900065898895,
+        "case_id": "exact-07",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 0.25358994025737047,
+        "case_id": "exact-08",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 0.2721319906413555,
+        "case_id": "exact-09",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 0.272089964710176,
+        "case_id": "exact-10",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 0.08429400622844696,
+        "case_id": "exact-11",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 0.25629904121160507,
+        "case_id": "exact-12",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 0.2561729634180665,
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "latency_ms": 0.671684043481946,
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 0.25471497792750597,
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 0.13500405475497246,
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 0.24967396166175604,
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 0.13700302224606276,
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "latency_ms": 0.27879897970706224,
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "latency_ms": 0.27925800532102585,
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 0.140046002343297,
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 0.2454229397699237,
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 0.24909002240747213,
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 0.2566310577094555,
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:dependency-latency",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 0.15258695930242538,
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 0.16554701142013073,
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 0.3489670343697071,
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 0.38646894972771406,
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 0.3067580983042717,
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 0.13592001050710678,
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 0.4568881122395396,
+        "case_id": "multi-01",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 0.2129219938069582,
+        "case_id": "multi-02",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 0.502763083204627,
+        "case_id": "multi-03",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 0.20408898126333952,
+        "case_id": "multi-04",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 0.10891992133110762,
+        "case_id": "multi-05",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.5,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 0.7908549159765244,
+        "case_id": "multi-06",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0032921088859438896,
+        "case_id": "negative-01",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.03245903644710779,
+        "case_id": "negative-02",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.016291975043714046,
+        "case_id": "negative-03",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.016583013348281384,
+        "case_id": "negative-04",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.000875093974173069,
+        "case_id": "negative-05",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.014833989553153515,
+        "case_id": "negative-06",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      }
+    ],
+    "fts": [
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 7.938546012155712,
+        "case_id": "exact-01",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 1.622543903067708,
+        "case_id": "exact-02",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:dependency-latency"
+        ],
+        "latency_ms": 1.0360280284658074,
+        "case_id": "exact-03",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 1.4228300424292684,
+        "case_id": "exact-04",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 1.3337440323084593,
+        "case_id": "exact-05",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:health-endpoint-failures"
+        ],
+        "latency_ms": 1.2707840651273727,
+        "case_id": "exact-06",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 1.7329220427200198,
+        "case_id": "exact-07",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 0.6953100673854351,
+        "case_id": "exact-08",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 1.353828003630042,
+        "case_id": "exact-09",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.988609972409904,
+        "case_id": "exact-10",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 0.3403429873287678,
+        "case_id": "exact-11",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 0.9175660088658333,
+        "case_id": "exact-12",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.1526979506015778,
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.5326249413192272,
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:dependency-latency"
+        ],
+        "latency_ms": 1.1958240065723658,
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5457649240270257,
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.1598229175433517,
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.425220001488924,
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.9458180284127593,
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.905731925740838,
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5214719567447901,
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.752729014493525,
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5596400005742908,
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.8644820190966129,
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5948910256847739,
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5237639416009188,
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 2.5314849335700274,
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.6449600225314498,
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.1648230720311403,
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5263891071081161,
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.9349000174552202,
+        "case_id": "multi-01",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.34384289756417274,
+        "case_id": "multi-02",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.8054389618337154,
+        "case_id": "multi-03",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.4168449668213725,
+        "case_id": "multi-04",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.3050080267712474,
+        "case_id": "multi-05",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 1.2217420153319836,
+        "case_id": "multi-06",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0032510142773389816,
+        "case_id": "negative-01",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.8638979634270072,
+        "case_id": "negative-02",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.4759710282087326,
+        "case_id": "negative-03",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5064720753580332,
+        "case_id": "negative-04",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0015409896150231361,
+        "case_id": "negative-05",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.4883049987256527,
+        "case_id": "negative-06",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      }
+    ],
+    "semantic": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 532.3522579856217,
+        "case_id": "exact-01",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 419.2458559991792,
+        "case_id": "exact-02",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 437.4969279160723,
+        "case_id": "exact-03",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 432.63246899005026,
+        "case_id": "exact-04",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 443.9591880654916,
+        "case_id": "exact-05",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 432.01574706472456,
+        "case_id": "exact-06",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 434.77803003042936,
+        "case_id": "exact-07",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "latency_ms": 424.68234500847757,
+        "case_id": "exact-08",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 429.03763009235263,
+        "case_id": "exact-09",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 423.7498230068013,
+        "case_id": "exact-10",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 426.9162450218573,
+        "case_id": "exact-11",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 395.6947820261121,
+        "case_id": "exact-12",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "latency_ms": 423.3027750160545,
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 422.6628850447014,
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 406.18665202055126,
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 387.1017249766737,
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 400.6434209877625,
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 419.16409006807953,
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 414.5164239453152,
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 492.8007781272754,
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 425.2472568769008,
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 413.2001851685345,
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 415.4836661182344,
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 394.0732979681343,
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 406.4326339866966,
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 399.9847949016839,
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 406.31721599493176,
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 703.691174974665,
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 517.7664710208774,
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 413.3904540212825,
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 399.3493289453909,
+        "case_id": "multi-01",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 411.75420593935996,
+        "case_id": "multi-02",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 444.7593439836055,
+        "case_id": "multi-03",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 411.94971499498934,
+        "case_id": "multi-04",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 416.0354919731617,
+        "case_id": "multi-05",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 471.25498205423355,
+        "case_id": "multi-06",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-01",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-02",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-03",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-04",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-05",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.0,
+        "case_id": "negative-06",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      }
+    ],
+    "hybrid": [
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 540.3897649375722,
+        "case_id": "exact-01",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 420.91235890984535,
+        "case_id": "exact-02",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 438.6129999766126,
+        "case_id": "exact-03",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 434.1157170711085,
+        "case_id": "exact-04",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 445.3379751648754,
+        "case_id": "exact-05",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 433.3309071371332,
+        "case_id": "exact-06",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 436.5436611697078,
+        "case_id": "exact-07",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "latency_ms": 425.4200311843306,
+        "case_id": "exact-08",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 430.4592931875959,
+        "case_id": "exact-09",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 424.75355800706893,
+        "case_id": "exact-10",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 427.3082560393959,
+        "case_id": "exact-11",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 396.67026593815535,
+        "case_id": "exact-12",
+        "group": "exact",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "latency_ms": 424.5263079646975,
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 424.2504279827699,
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "latency_ms": 407.4064770247787,
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 387.70040799863636,
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 401.8243699101731,
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 419.63493602816015,
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 415.51320196595043,
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "latency_ms": 493.7289690133184,
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 425.8127708453685,
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "latency_ms": 413.98712317459285,
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 416.0918490961194,
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 394.9608219554648,
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "latency_ms": 407.05198398791254,
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "latency_ms": 400.5725188180804,
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "latency_ms": 408.9129528729245,
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "latency_ms": 705.4178460966796,
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 518.952836166136,
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 413.9606771059334,
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 400.305270915851,
+        "case_id": "multi-01",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 412.16117586009204,
+        "case_id": "multi-02",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "latency_ms": 445.5876589054242,
+        "case_id": "multi-03",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:readiness-failures"
+        ],
+        "latency_ms": 412.38164296373725,
+        "case_id": "multi-04",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "latency_ms": 416.4310860214755,
+        "case_id": "multi-05",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "latency_ms": 472.54718397744,
+        "case_id": "multi-06",
+        "group": "multi",
+        "has_relevant": true,
+        "negative_correct": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.009126029908657074,
+        "case_id": "negative-01",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.871355994604528,
+        "case_id": "negative-02",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.4835970466956496,
+        "case_id": "negative-03",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.5133061204105616,
+        "case_id": "negative-04",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.005249981768429279,
+        "case_id": "negative-05",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "latency_ms": 0.4948469577357173,
+        "case_id": "negative-06",
+        "group": "negative",
+        "has_relevant": false,
+        "negative_correct": true
+      }
+    ]
+  }
+}
