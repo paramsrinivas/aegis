@@ -180,3 +180,17 @@ def backend_trends(
         limit,
     )
 
+@router.get("/historical-backends")
+def historical_backends():
+    """Discover backends with stored telemetry."""
+
+    from app.storage import list_historical_backends
+
+    backends = read_storage(
+        list_historical_backends
+    )
+
+    return {
+        "count": len(backends),
+        "backends": backends,
+    }

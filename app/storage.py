@@ -350,3 +350,16 @@ def get_backend_history(
             }
             for row in rows
         ]
+def list_historical_backends(db_path=None) -> list[str]:
+    """Return unique backend names from stored telemetry."""
+
+    with connect(db_path) as connection:
+        rows = connection.execute(
+            """
+            SELECT DISTINCT backend
+            FROM backend_samples
+            ORDER BY backend
+            """
+        ).fetchall()
+
+        return [row["backend"] for row in rows]
