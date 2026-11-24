@@ -1,23 +1,307 @@
-# Aegis AI — Milestone 2A
+# Aegis AI
 
-Read-only, deterministic incident diagnostics from the live Aegis manager `/weights` endpoint. **Gemini, RAG, LangGraph and deployment are not implemented in this milestone.**
+**Enterprise Incident Intelligence Platform**
 
-Start Aegis Docker Compose first, then:
+Evidence-grounded AI-assisted infrastructure diagnostics, historical telemetry analysis and incident management.
+
+Aegis AI extends the Aegis load-balancing infrastructure with an incident intelligence layer that combines deterministic diagnostics, persistent telemetry, constrained LLM hypothesis selection and an interactive operational dashboard.
+
+The platform is designed to assist human operators in investigating infrastructure incidents without executing autonomous remediation.
+
+## Key Features
+
+- **Live infrastructure diagnostics:** Backend health monitoring, EWMA latency analysis, threshold-based findings and deterministic severity classification.
+- **Evidence-grounded AI investigation:** Gemini selects hypotheses from a predefined catalogue, with validated evidence references and backend-specific constraints.
+- **Historical telemetry:** Persistent SQLite storage of timestamped infrastructure observations.
+- **Incident lifecycle management:** Incident detection, deduplication, observation tracking and recovery detection.
+- **Historical analytics:** Latency trends, observed threshold violation rates and telemetry availability.
+- **Runbook retrieval:** Issue-aware retrieval of relevant operational guidance.
+- **Provider resilience:** Bounded retry attempts, request timeouts and deterministic fallback when AI investigation is unavailable.
+- **Interactive dashboard:** Streamlit and Plotly interface for infrastructure monitoring, historical analytics, incident management and AI investigation.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    UI[Streamlit Dashboard] --> API[FastAPI Service]
+
+    API --> Manager[Aegis Manager API]
+    Manager --> Diagnostics[Deterministic Diagnostics]
+
+    Diagnostics --> Collector[Telemetry Collection]
+    Collector --> DB[(SQLite Storage)]
+
+    DB --> History[Historical Analytics]
+    DB --> Incidents[Incident Lifecycle]
+    History --> Context[Investigation Context]
+
+    Diagnostics --> Context
+    Runbooks[Operational Runbooks] --> Context
+
+    Context --> Evidence[Evidence Registry]
+    Evidence --> Gemini[Gemini Hypothesis Selection]
+
+    Gemini --> Validation[Grounding Validation]
+    Validation -->|Valid selections| Report[Grounded Assessment]
+    Validation -->|Invalid output| Fallback[Deterministic Fallback]
+    Gemini -->|Provider failure| Fallback
+
+    Fallback --> Report
+    Report --> API
+```
+
+## Evidence-Grounded Investigation
+
+Aegis AI separates factual infrastructure observations from AI-generated hypothesis selection.
+
+1. Retrieve live backend telemetry from the Aegis manager.
+2. Validate telemetry and classify incident severity deterministically.
+3. Retrieve relevant historical observations and operational runbooks.
+4. Construct a deterministic evidence registry.
+5. Provide Gemini with permitted hypothesis candidates.
+6. Validate model selections against the evidence registry.
+7. Render observations, unconfirmed hypotheses and recommended diagnostic checks.
+8. Return deterministic diagnostics if AI investigation fails.
+
+The model cannot introduce arbitrary factual observations into the accepted assessment. Hypothesis identifiers, backend associations and evidence references are validated by application logic.
+
+Evidence validation does not establish that a hypothesis is the actual root cause.
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Backend | Python 3.12, FastAPI |
+| AI integration | Google Gemini API |
+| Dashboard | Streamlit |
+| Visualization | Plotly |
+| Persistence | SQLite |
+| HTTP communication | HTTPX |
+| Testing | Pytest, Streamlit AppTest |
+| Infrastructure integration | Aegis Manager API |
+
+## Repository Structure
+
+```
+aegis-ai/
+├── app/
+│   ├── main.py
+│   ├── ai.py
+│   ├── evidence.py
+│   ├── reasoning.py
+│   ├── grounding.py
+│   ├── knowledge.py
+│   ├── collector.py
+│   ├── storage.py
+│   ├── incidents.py
+│   ├── history.py
+│   ├── trends.py
+│   └── historical_context.py
+├── dashboard/
+├── evaluation/
+├── runbooks/
+├── tests/
+├── .streamlit/
+├── .env.example
+├── requirements.txt
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.12
+- A running Aegis infrastructure manager
+- Optional Gemini API key for AI-assisted investigation
+
+Infrastructure repository: [Aegis](https://github.com/paramsrinivas/aegis)
+
+The Aegis manager must expose a compatible `/weights` endpoint containing backend health and EWMA latency observations.
+
+### 1. Set up the Python environment
 
 ```bash
-cd ~/projects/aegis-ai
-python3 -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
-python -m pytest -q
-uvicorn app.main:app --reload --port 8010
+python -m pip install -r requirements.txt
 ```
 
-In a second terminal:
+### 2. Configure environment variables
 
 ```bash
-curl -i http://localhost:8010/healthz
-curl -sS 'http://localhost:8010/investigate?threshold_ms=100'
+cp .env.example .env
 ```
 
-Set `AEGIS_MANAGER_URL` to override `http://localhost:8001`. The threshold is illustrative, not an established SLO. This endpoint does not make changes to the infrastructure.
+Edit `.env` as required.
+
+| Variable | Purpose |
+|---|---|
+| `AEGIS_MANAGER_URL` | Aegis infrastructure manager URL |
+| `GEMINI_API_KEY` | Optional Gemini API credential |
+| `GEMINI_MODEL` | Gemini model identifier |
+| `AEGIS_DB_PATH` | SQLite database location |
+| `AEGIS_AI_API_URL` | Dashboard connection to FastAPI |
+
+Do not commit the populated `.env` file.
+
+### 3. Start the API
+
+From the repository root:
+
+```bash
+source .venv/bin/activate
+
+set -a
+source .env
+set +a
+
+uvicorn app.main:app --host 127.0.0.1 --port 8010
+```
+
+Interactive API documentation:
+
+http://127.0.0.1:8010/docs
+
+### 4. Start the dashboard
+
+In a separate terminal, from the repository root:
+
+```bash
+source .venv/bin/activate
+
+set -a
+source .env
+set +a
+
+PYTHONPATH="$PWD" python -m streamlit run dashboard/main.py
+```
+
+Open:
+
+http://127.0.0.1:8501
+
+## Dashboard
+
+The incident intelligence workspace contains four operational sections.
+
+| Section | Capabilities |
+|---|---|
+| Infrastructure Overview | Live health, latency, severity and diagnostic findings |
+| Historical Analytics | Stored observations, latency trends and threshold violations |
+| Incident Management | Open and resolved incidents, observation counts and supporting snapshots |
+| AI Investigation | Evidence-grounded hypotheses, runbooks, recommended checks and uncertainty |
+
+Telemetry collection is explicitly initiated through the dashboard or collection API. The application does not currently run a continuous background collector.
+
+## API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/healthz` | API health |
+| GET | `/investigate` | Live deterministic diagnostics |
+| GET | `/explain` | Evidence-grounded investigation |
+| POST | `/collect` | Collect and persist telemetry |
+| GET | `/snapshots` | List stored snapshots |
+| GET | `/snapshots/{id}` | Retrieve a stored snapshot |
+| GET | `/historical-backends` | Discover historically observed backends |
+| GET | `/history/{backend}` | Backend observation history |
+| GET | `/trends/{backend}` | Historical trend analysis |
+| GET | `/incidents` | List tracked incidents |
+| GET | `/incidents/{id}` | Retrieve incident details |
+
+### Example requests
+
+```bash
+curl http://127.0.0.1:8010/healthz
+
+curl 'http://127.0.0.1:8010/investigate?threshold_ms=100'
+
+curl -X POST \
+  'http://127.0.0.1:8010/collect?threshold_ms=100'
+
+curl 'http://127.0.0.1:8010/trends/backend2?threshold_ms=100'
+
+curl 'http://127.0.0.1:8010/explain?threshold_ms=100'
+```
+
+The default latency threshold of 100 ms is illustrative and does not represent an established production SLO.
+
+## Evaluation and Testing
+
+Run the automated regression suite:
+
+```bash
+python -m pytest -q
+```
+
+Run the synthetic diagnostic and adversarial grounding benchmark:
+
+```bash
+python -m evaluation.benchmark
+```
+
+### Verified Evaluation Results
+
+| Evaluation | Result |
+|---|---|
+| Automated regression suite | 232 passing tests |
+| Synthetic incident scenarios | 8/8 passed |
+| Diagnostic benchmark checks | 64/64 passed |
+| Adversarial model outputs rejected | 10/10 |
+
+The adversarial evaluation includes fabricated evidence, invented hypotheses, incorrect backend associations, unsupported root-cause claims, unauthorized actions and malformed output.
+
+These results measure behavior on the implemented test cases. They do not establish general LLM accuracy, comprehensive security guarantees or production reliability.
+
+Benchmark results are available in `evaluation/results.json`.
+
+## Engineering Design Decisions
+
+### Deterministic diagnostics before AI
+
+Severity classification and factual observations are generated by application logic rather than delegated to the language model.
+
+### Constrained hypothesis selection
+
+The model selects from an application-defined catalogue. Accepted hypothesis wording and recommended checks are rendered from trusted application definitions.
+
+### Graceful degradation
+
+Provider failures and invalid model outputs trigger deterministic fallback, preserving useful diagnostic information without requiring a successful AI response.
+
+### Transactional persistence
+
+Telemetry snapshots, backend observations, findings and incident lifecycle updates are persisted using SQLite transactions.
+
+### Efficient historical discovery
+
+Historical backend discovery uses a dedicated database query rather than fetching individual snapshot details. This replaces a previous dashboard discovery path requiring up to 101 API requests with one request.
+
+## Safety and Operational Boundaries
+
+- Infrastructure diagnostics are read-only.
+- Telemetry collection writes to local application storage.
+- No autonomous remediation is implemented.
+- AI-selected hypotheses remain unconfirmed.
+- Human review is required before operational action.
+- Historical samples do not establish continuous degradation.
+- Observed threshold violation rates are not SLA measurements.
+- AI investigation sends relevant telemetry, evidence and runbook context to the configured Gemini provider.
+
+## Limitations
+
+Aegis AI currently uses backend health and EWMA latency as its primary live diagnostic signals. It does not independently observe CPU utilization, memory pressure, distributed traces or application logs.
+
+The platform is a locally developed engineering prototype, not a production-certified incident management system. Authentication, multi-tenant isolation, continuous collection and distributed persistence are outside the current implementation scope.
+
+## Project Development
+
+| Version | Milestone |
+|---|---|
+| v0.2.0 | Reliable AI diagnostic foundation |
+| v0.3.0 | Evidence grounding and adversarial evaluation |
+| v0.4.0 | Historical telemetry and incident lifecycle |
+| v0.5.0 | Interactive incident intelligence dashboard |
+
+Aegis AI demonstrates infrastructure integration, applied AI reliability, backend engineering, operational analytics and human-in-the-loop incident investigation.

@@ -42,3 +42,6 @@ data/
 *.db-shm
 *.sqlite3-wal
 *.sqlite3-shm
+
+# Streamlit secrets
+.streamlit/secrets.toml

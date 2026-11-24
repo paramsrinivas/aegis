@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Aegis AI: Incident Diagnostics",
-    version="0.1.0",
+    version="1.0.0",
     lifespan=lifespan,
 )
 
@@ -27,7 +27,7 @@ async def healthz():
     return {'status': 'ok'}
 
 @app.get('/investigate')
-async def investigate(threshold_ms: float = Query(100.0, gt=0)):
+async def investigate(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False)):
     url = os.environ.get('AEGIS_MANAGER_URL', 'http://localhost:8001').rstrip('/') + '/weights'
     try:
         async with httpx.AsyncClient(timeout=3.0) as client:
@@ -44,7 +44,7 @@ async def investigate(threshold_ms: float = Query(100.0, gt=0)):
             if raw is not None and (isinstance(raw, bool) or not isinstance(raw, (float, int)) or not math.isfinite(raw) or raw < 0):
                 raise ValueError('invalid latency telemetry')
             backends.append({'name': name, 'healthy': bool(info['healthy']), 'ewma_ms': raw})
-    except (httpx.HTTPError, ValueError) as exc:
+    except (httpx.HTTPError, ValueError, OverflowError) as exc:
         raise HTTPException(status_code=503, detail='Aegis telemetry unavailable or invalid') from exc
     findings = []
     for b in backends:
@@ -56,7 +56,7 @@ async def investigate(threshold_ms: float = Query(100.0, gt=0)):
             findings.append({'backend': b['name'], 'issue': 'high_latency', 'evidence': f"EWMA {b['ewma_ms']} ms > {threshold_ms} ms"})
     unhealthy = sum(not b['healthy'] for b in backends)
     severity = ('critical' if unhealthy == len(backends) else 'high' if unhealthy else 'medium' if any(f['issue']=='high_latency' for f in findings) else 'unknown' if findings else 'none')
-    return {'severity': severity, 'threshold_ms': threshold_ms, 'backends': backends, 'findings': findings, 'source': 'Aegis manager /weights', 'limitations': ['Single snapshot; no historical trend', 'Health and EWMA do not establish root cause'], 'actions_executed': []}
+    return {'severity': severity, 'threshold_ms': threshold_ms, 'backends': backends, 'findings': findings, 'source': 'Aegis manager /weights', 'limitations': ['Current findings are based on a single live telemetry snapshot', 'Health and EWMA do not establish root cause'], 'actions_executed': []}
 
 
 
@@ -110,8 +110,9 @@ def deterministic_fallback(incident: dict) -> dict:
     explanation["uncertainty"] = (
         "Root cause is unknown. "
         "AI hypothesis selection was unavailable. "
-        "A single telemetry snapshot does not establish "
-        "persistence or causality."
+        "Current findings reflect a single live snapshot. "
+        "Historical samples, when available, do not "
+        "establish continuous degradation or causality."
     )
 
     explanation["grounding"] = {
@@ -126,7 +127,7 @@ def deterministic_fallback(incident: dict) -> dict:
 
 
 @app.get('/explain')
-async def explain(threshold_ms: float = Query(100.0, gt=0)):
+async def explain(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False)):
     from app.knowledge import retrieve
     from app.ai import explain_with_gemini, DEFAULT_MODEL
     from fastapi.concurrency import run_in_threadpool

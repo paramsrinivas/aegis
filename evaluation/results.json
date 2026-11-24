@@ -10,7 +10,7 @@
     "adversarial_cases": 10,
     "adversarial_cases_rejected": 10,
     "adversarial_rejection_rate_pct": 100.0,
-    "runtime_ms": 3.09
+    "runtime_ms": 2.95
   },
   "incident_results": [
     {

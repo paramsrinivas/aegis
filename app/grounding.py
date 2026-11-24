@@ -113,8 +113,9 @@ def build_grounded_explanation(
             "Root cause is unknown. "
             "Hypotheses are unconfirmed possibilities, "
             "not established causes. "
-            "A single telemetry snapshot does not "
-            "establish persistence or causality."
+            "Current findings reflect a single live snapshot. "
+            "Historical samples, when available, do not "
+            "establish continuous degradation or causality."
         ),
         "evidence": evidence,
         "hypothesis_details": hypotheses,

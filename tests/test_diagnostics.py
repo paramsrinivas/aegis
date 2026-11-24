@@ -184,3 +184,37 @@ def test_manager_unavailable(failure):
             asyncio.run(investigate(100.0))
 
     assert error.value.status_code == 503
+def test_overflowing_latency():
+    with pytest.raises(HTTPException) as error:
+        run_investigation({
+            "backend1": {
+                "healthy": 1,
+                "ewma_ms": 10 ** 400,
+            },
+        })
+
+    assert error.value.status_code == 503
+
+
+@pytest.mark.parametrize(
+    "endpoint",
+    ["/investigate", "/explain"],
+)
+@pytest.mark.parametrize(
+    "threshold",
+    ["inf", "-inf", "nan", "0", "-1"],
+)
+def test_invalid_threshold_parameter(
+    endpoint,
+    threshold,
+):
+    from fastapi.testclient import TestClient
+    from app.main import app
+
+    with TestClient(app) as client:
+        response = client.get(
+            endpoint,
+            params={"threshold_ms": threshold},
+        )
+
+    assert response.status_code == 422
