@@ -1,144 +1,173 @@
+"""Live smoke checks for Aegis's selected semantic-coverage retrieval."""
 
-"""Live hybrid retrieval checks against reviewed Aegis runbooks."""
-
+import hashlib
 import os
 import time
 
 import psycopg
 from google import genai
+from google.genai import types
+from psycopg.rows import dict_row
 
-from rag.retrieve import hybrid_retrieve
+from rag.documents import load_runbooks
+from rag.retrieve import EMBEDDING_MODEL
+from rag.validation import retrieve
 
 
 CASES = [
-    {
-        "name": "Elevated latency",
-        "query": "latency",
-        "tags": ["high_latency"],
-        "expected": {"runbook:latency"},
-    },
-    {
-        "name": "Unhealthy backend",
-        "query": "health endpoint",
-        "tags": ["unhealthy"],
-        "expected": {"runbook:unhealthy"},
-    },
-    {
-        "name": "Missing telemetry",
-        "query": "missing telemetry",
-        "tags": ["unknown_latency"],
-        "expected": {"runbook:missing-telemetry"},
-    },
-    {
-        "name": "Cross-tag isolation",
-        "query": "latency",
-        "tags": ["unhealthy"],
-        "expected": {"runbook:unhealthy"},
-    },
-    {
-        "name": "Multi-issue incident",
-        "query": "latency",
-        "tags": ["high_latency", "unknown_latency"],
-        "expected": {
-            "runbook:latency",
-            "runbook:missing-telemetry",
-        },
-    },
-    {
-        "name": "Unknown issue tag",
-        "query": "backend failure",
-        "tags": ["unsupported_issue"],
-        "expected": set(),
-    },
-    {
-        "name": "No issue tags",
-        "query": "backend latency",
-        "tags": [],
-        "expected": set(),
-    },
+    ("High latency", "backend elevated latency EWMA", ["high_latency"]),
+    ("Unhealthy backend", "backend readiness and health failed", ["unhealthy"]),
+    ("Unknown latency", "missing EWMA telemetry probe", ["unknown_latency"]),
+    (
+        "Mixed incident",
+        "slow requests and failed backend health check",
+        ["high_latency", "unhealthy"],
+    ),
+    (
+        "Three-issue incident",
+        "slow requests, failed readiness and stale telemetry",
+        ["high_latency", "unhealthy", "unknown_latency"],
+    ),
 ]
 
 
+def validate_corpus(connection, documents):
+    """Verify database rows against reviewed local source files."""
+
+    with connection.cursor(row_factory=dict_row) as cursor:
+        cursor.execute(
+            """
+            SELECT document_id, source_path, title, content,
+                   issue_tags, content_sha256, embedding_model,
+                   vector_dims(embedding) AS dimensions
+            FROM rag_documents
+            """
+        )
+        rows = cursor.fetchall()
+
+    stored = {row["document_id"]: row for row in rows}
+
+    assert len(rows) == len(stored), "Duplicate stored IDs"
+    assert set(stored) == set(documents), "Corpus ID mismatch"
+
+    for document_id, doc in documents.items():
+        row = stored[document_id]
+
+        assert row["source_path"] == doc["source_path"]
+        assert row["title"] == doc["title"]
+        assert row["content"] == doc["content"]
+        assert set(row["issue_tags"]) == set(doc["issue_tags"])
+        assert row["content_sha256"] == doc["content_sha256"]
+        assert hashlib.sha256(
+            row["content"].encode("utf-8")
+        ).hexdigest() == doc["content_sha256"]
+        assert row["embedding_model"] == EMBEDDING_MODEL
+        assert row["dimensions"] == 768
+
+
 def main():
-    client = genai.Client(
-        api_key=os.environ["GEMINI_API_KEY"]
+    documents = {
+        doc["document_id"]: doc
+        for doc in load_runbooks()
+    }
+
+    assert len(documents) == 12, (
+        f"Expected the reviewed 12-document corpus; "
+        f"found {len(documents)}"
     )
 
-    passed = 0
-    timings = []
+    durations = []
 
     with psycopg.connect(
         os.environ["AEGIS_VECTOR_DATABASE_URL"],
+        connect_timeout=3,
         autocommit=True,
     ) as connection:
+        validate_corpus(connection, documents)
+        print("PASS: Reviewed corpus integrity (12 documents)")
 
-        for case in CASES:
-            start = time.perf_counter()
+        with genai.Client(
+            api_key=os.environ["GEMINI_API_KEY"],
+            http_options=types.HttpOptions(
+                timeout=7000,
+                retry_options=types.HttpRetryOptions(attempts=1),
+            ),
+        ) as client:
+            for name, query, tags in CASES:
+                started = time.perf_counter()
 
-            results = hybrid_retrieve(
-                connection,
-                client,
-                case["query"],
-                case["tags"],
-            )
-
-            elapsed_ms = (time.perf_counter() - start) * 1000
-            timings.append(elapsed_ms)
-
-            actual = {
-                document["document_id"]
-                for document in results
-            }
-
-            assert actual == case["expected"], (
-                f"{case['name']}: "
-                f"expected {case['expected']}, got {actual}"
-            )
-
-            for document in results:
-                assert set(document["issue_tags"]) & set(case["tags"])
-                assert document["source_path"].startswith("runbooks/")
-                assert document["content"]
-                assert len(document["content_sha256"]) == 64
-                assert document["rrf_score"] > 0
-
-            scores = [
-                document["rrf_score"]
-                for document in results
-            ]
-
-            assert scores == sorted(scores, reverse=True)
-
-            if case["name"] == "Elevated latency":
-                assert results[0]["semantic_rank"] == 1
-                assert results[0]["lexical_rank"] == 1
-
-            if case["name"] == "Cross-tag isolation":
-                assert results[0]["lexical_rank"] is None
-                assert results[0]["semantic_rank"] == 1
-
-            print(f"\nPASS: {case['name']}")
-            print(f"  Query: {case['query']}")
-            print(f"  Tags: {case['tags']}")
-            print(f"  Retrieval time: {elapsed_ms:.2f} ms")
-
-            for document in results:
-                print(
-                    f"  {document['document_id']} | "
-                    f"semantic_rank={document['semantic_rank']} | "
-                    f"lexical_rank={document['lexical_rank']} | "
-                    f"rrf={document['rrf_score']:.6f}"
+                results = retrieve(
+                    connection,
+                    client,
+                    query,
+                    tags,
+                    strategy="semantic_coverage",
+                    limit=3,
                 )
 
-            passed += 1
+                elapsed = (
+                    time.perf_counter() - started
+                ) * 1000
+                durations.append(elapsed)
 
-    print(f"\nLive retrieval checks: {passed}/{len(CASES)} passed")
+                assert 1 <= len(results) <= 3, name
+
+                ids = [
+                    row["document_id"]
+                    for row in results
+                ]
+
+                assert len(ids) == len(set(ids)), name
+
+                for row in results:
+                    doc = documents[row["document_id"]]
+
+                    assert set(row["issue_tags"]) & set(tags)
+                    assert row["source_path"] == doc["source_path"]
+                    assert row["content_sha256"] == doc["content_sha256"]
+
+                covered = {
+                    tag
+                    for row in results
+                    for tag in row["issue_tags"]
+                    if tag in tags
+                }
+
+                assert covered == set(tags), (
+                    f"{name}: covered {covered}, "
+                    f"expected {set(tags)}"
+                )
+
+                print(
+                    f"PASS: {name}; "
+                    f"documents={len(results)}; "
+                    f"coverage={len(covered)}/{len(tags)}; "
+                    f"elapsed_ms={elapsed:.2f}"
+                )
+
+            for name, query, tags in [
+                ("Unsupported issue", "backend failure", ["unsupported"]),
+                ("No issue tags", "backend latency", []),
+                ("Empty query", "", ["high_latency"]),
+            ]:
+                results = retrieve(
+                    connection,
+                    client,
+                    query,
+                    tags,
+                    strategy="semantic_coverage",
+                    limit=3,
+                )
+
+                assert results == [], name
+                print(f"PASS: {name}")
+
+    print("Live retrieval smoke checks: 9/9 PASS")
     print(
-        f"Mean retrieval time: "
-        f"{sum(timings) / len(timings):.2f} ms"
+        "Positive-query mean wall-clock duration: "
+        f"{sum(durations) / len(durations):.2f} ms"
     )
 
 
 if __name__ == "__main__":
     main()
-

@@ -1,5 +1,18 @@
 # Aegis Intelligence
 
+> **Aegis v2 update:** This branch includes pgvector
+> retrieval, coverage-aware ranking, Google ADK
+> orchestration and structured diagnostic observability.
+>
+> See the [v2 architecture](rag/ARCHITECTURE.md),
+> [consolidated evaluation](rag/PHASE7_EVALUATION.md)
+> and [root README](../README.md) for current results
+> and setup instructions.
+>
+> The original intelligence-layer documentation below
+> describes the v1 baseline unless otherwise indicated.
+
+
 > **Deployment note:** This directory is the intelligence
 > layer of the unified Aegis platform. For the recommended
 > nine-service Docker deployment, follow the

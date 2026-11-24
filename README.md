@@ -6,6 +6,192 @@ Aegis is a distributed infrastructure and AI-assisted incident intelligence plat
 
 The platform integrates a simulated microservice environment with an incident intelligence layer designed to help human operators investigate infrastructure degradation without executing autonomous remediation.
 
+## Aegis v2 — Agentic RAG and Incident Intelligence
+
+This branch extends Aegis with an evaluation-driven retrieval
+pipeline, Google ADK workflow orchestration and structured
+LLM observability.
+
+### V2 Capabilities
+
+- PostgreSQL and pgvector retrieval over 12 reviewed operational runbooks.
+- Gemini embeddings with 768-dimensional vectors.
+- Semantic search, full-text search and reciprocal rank fusion.
+- Evaluated weighted hybrid and coverage-aware retrieval strategies.
+- Semantic retrieval with issue coverage as the selected opt-in runtime strategy.
+- Google ADK orchestration with one restricted LLM agent and deterministic processing stages.
+- Strict hypothesis schemas and backend-specific evidence validation.
+- Correlated diagnostic traces, stage timings and provider-reported token metrics.
+- Classified provider failures and deterministic recovery.
+
+SQLite remains authoritative for telemetry and incident records.
+No autonomous remediation is implemented.
+
+### V2 Architecture
+
+```mermaid
+flowchart TD
+    Manager[Infrastructure Manager] --> API[FastAPI Intelligence API]
+    SQLite[(SQLite Telemetry)] --> API
+    API --> Triage[Deterministic Triage]
+    Triage --> Retrieval[Coverage-aware Retrieval]
+    Corpus[Reviewed Runbooks] --> Vector[(PostgreSQL and pgvector)]
+    Vector --> Retrieval
+    Retrieval --> Agent[Google ADK Gemini Agent]
+    Agent --> Grounding[Deterministic Grounding]
+    Agent -->|Provider failure| Fallback[Deterministic Fallback]
+    Grounding -->|Invalid output| Fallback
+    Grounding --> Report[Assessment for Human Review]
+    Fallback --> Report
+    Report --> Dashboard[Streamlit Dashboard]
+    Retrieval -.-> Logs[Structured Diagnostic Traces]
+    Agent -.-> Logs
+    Grounding -.-> Logs
+```
+
+### V2 Evaluation Highlights
+
+| Metric | Result |
+|---|---:|
+| Intelligence regression tests | 385 passed |
+| Additional intelligence tests over v1 | 153 |
+| Test count growth | 65.9% |
+| Reviewed runbooks | 12 |
+| Synthetic retrieval queries across two datasets | 72 |
+| Validation Hit@1 | 87.50% |
+| Validation Recall@3 | 88.19% |
+| Validation MRR@3 | 0.8958 |
+| Multi-issue tag coverage | 100% |
+| Negative validation cases rejected | 6/6 |
+| Measured validation tag leakage | 0 |
+| Live retrieval smoke checks | 9/9 |
+| Mean live retrieval duration | 463.05 ms |
+
+The retrieval metrics above refer to the selected
+semantic-coverage strategy on the 30-case synthetic
+validation dataset.
+
+The live retrieval duration is the mean of five positive
+queries in one local Docker integration run.
+
+### Retrieval Strategy Selection
+
+| Strategy | Recall@3 | Multi-issue recall | Multi-issue coverage |
+|---|---:|---:|---:|
+| Semantic | 86.81% | 72.92% | 89.58% |
+| Semantic + coverage | 88.19% | 77.08% | 100% |
+| Weighted hybrid + coverage | 86.11% | 70.83% | 100% |
+| Adaptive | 86.11% | 70.83% | 100% |
+
+Semantic retrieval with coverage was selected because
+it achieved the strongest Recall@3 and multi-issue
+recall on the validation dataset.
+
+Hybrid retrieval remains implemented and evaluated.
+It is not the selected runtime strategy.
+
+### Run Aegis v2
+
+Clone the repository and select the v2 branch:
+
+```bash
+git clone -b feat/agentic-rag-v2 https://github.com/paramsrinivas/aegis.git
+cd aegis
+
+test -f .env || cp .env.example .env
+chmod 600 .env
+```
+
+Configure GEMINI_API_KEY in the root .env file.
+
+Build and start the platform with the optional vector database:
+
+```bash
+docker compose --profile rag build
+docker compose --profile rag up -d --wait
+```
+
+Build the ingestion utility:
+
+```bash
+docker build -t aegis-rag:dev   -f intelligence/rag/Dockerfile intelligence
+```
+
+Populate the reviewed runbook index using the default
+local development database configuration:
+
+```bash
+docker run --rm   --network aegis_intelligence   --env-file .env   -e AEGIS_VECTOR_DATABASE_URL=postgresql://aegis_rag:aegis_local_dev@vector-db:5432/aegis_rag   aegis-rag:dev
+```
+
+If the vector database password or Compose project name
+has changed, adjust the connection URL and network name.
+
+Enable the optional v2 execution path:
+
+```bash
+AEGIS_AGENT_MODE=adk AEGIS_RAG_MODE=semantic_coverage docker compose --profile rag up -d   --no-build --force-recreate intelligence-api
+```
+
+Both feature flags default to off, preserving the
+original execution path.
+
+Verify the API:
+
+```bash
+curl -fsS http://127.0.0.1:8010/healthz
+
+curl -fsS   'http://127.0.0.1:8010/explain?threshold_ms=100'
+```
+
+Inspect structured diagnostic events:
+
+```bash
+docker compose logs --no-color intelligence-api
+```
+
+Run the live retrieval smoke checks:
+
+```bash
+docker compose --profile rag run --rm --no-deps   -e AEGIS_VECTOR_DATABASE_URL=postgresql://aegis_rag:aegis_local_dev@vector-db:5432/aegis_rag   intelligence-api python -m rag.retrieval_check
+```
+
+The retrieval smoke check requires a populated vector
+database and an available Gemini embedding API.
+
+### Verification Boundaries
+
+Live Docker testing verified semantic retrieval,
+correlated diagnostic events, provider failure
+classification and deterministic fallback.
+
+Controlled model responses verified ADK workflow
+execution and grounding validation.
+
+Successful live end-to-end Gemini generation and live
+token reporting remain unverified in v2.
+
+The retrieval datasets are synthetic, and the validation
+dataset informed strategy selection. These results do
+not establish production retrieval accuracy or confirmed
+root-cause inference.
+
+Observability covers the ADK diagnostic service boundary,
+not the complete HTTP lifecycle or distributed tracing.
+
+### Detailed V2 Documentation
+
+- [V2 architecture](intelligence/rag/ARCHITECTURE.md)
+- [Consolidated evaluation](intelligence/rag/PHASE7_EVALUATION.md)
+- [Retrieval validation results](intelligence/rag/evaluations/fresh_validation.json)
+- [Runtime RAG integration](intelligence/rag/PHASE4_README.md)
+- [Diagnostic observability](intelligence/rag/PHASE6_README.md)
+
+The following sections retain the original Aegis
+infrastructure architecture and v1 baseline documentation.
+
+---
+
 ## Key Features
 
 ### Infrastructure and Adaptive Routing
@@ -358,7 +544,7 @@ The default threshold of 100 ms is illustrative and does not represent an establ
 
 ## Evaluation and Testing
 
-### Verified Results
+### Verified V1 Baseline Results
 
 | Evaluation | Result |
 |---|---:|
