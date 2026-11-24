@@ -1,0 +1,336 @@
+[
+  {
+    "id": "fresh-01",
+    "group": "single",
+    "query": "The moving average for response duration doubled on node B without other diagnostic signals",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:latency"
+    ]
+  },
+  {
+    "id": "fresh-02",
+    "group": "single",
+    "query": "Heap pressure and repeated collection pauses coincide with slow processing",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation"
+    ]
+  },
+  {
+    "id": "fresh-03",
+    "group": "single",
+    "query": "Most of the elapsed request time is spent waiting for an upstream RPC",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency"
+    ]
+  },
+  {
+    "id": "fresh-04",
+    "group": "single",
+    "query": "Incoming jobs accumulate faster than the executor can drain them",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing"
+    ]
+  },
+  {
+    "id": "fresh-05",
+    "group": "single",
+    "query": "One replica is marked unavailable; the reason has not been established",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:unhealthy"
+    ]
+  },
+  {
+    "id": "fresh-06",
+    "group": "single",
+    "query": "The health handler answers with a non-success status and an error payload",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:health-endpoint-failures"
+    ]
+  },
+  {
+    "id": "fresh-07",
+    "group": "single",
+    "query": "Hostname lookup succeeds but opening the TCP session fails",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "fresh-08",
+    "group": "single",
+    "query": "The container is alive but initialization has not completed",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:readiness-failures"
+    ]
+  },
+  {
+    "id": "fresh-09",
+    "group": "single",
+    "query": "The latency field is null and no valid sample has been recorded",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:missing-telemetry"
+    ]
+  },
+  {
+    "id": "fresh-10",
+    "group": "single",
+    "query": "The periodic monitoring coroutine is no longer running",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-scheduling"
+    ]
+  },
+  {
+    "id": "fresh-11",
+    "group": "single",
+    "query": "Every monitoring attempt is cancelled at its configured deadline",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "fresh-12",
+    "group": "single",
+    "query": "The dashboard keeps publishing a sample collected twenty minutes ago",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "fresh-13",
+    "group": "single",
+    "query": "CPU is near its ceiling and runnable threads are competing for execution",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation"
+    ]
+  },
+  {
+    "id": "fresh-14",
+    "group": "single",
+    "query": "The target port is not accepting connections from the manager",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "fresh-15",
+    "group": "single",
+    "query": "Check whether the background measurement loop was ever launched",
+    "tags": [
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:probe-scheduling"
+    ]
+  },
+  {
+    "id": "fresh-16",
+    "group": "single",
+    "query": "A growing backlog precedes the increase in response duration",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing"
+    ]
+  },
+  {
+    "id": "fresh-17",
+    "group": "multi",
+    "query": "Executor backlog grows on A while B fails TCP connection attempts",
+    "tags": [
+      "high_latency",
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:request-queueing",
+      "runbook:backend-connectivity"
+    ]
+  },
+  {
+    "id": "fresh-18",
+    "group": "multi",
+    "query": "Node A spends time waiting for upstream RPCs; monitoring of B expires at its deadline",
+    "tags": [
+      "high_latency",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:dependency-latency",
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "fresh-19",
+    "group": "multi",
+    "query": "Health handler returns 500 on A and B publishes an old measurement",
+    "tags": [
+      "unhealthy",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:health-endpoint-failures",
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "fresh-20",
+    "group": "multi",
+    "query": "Memory pressure on A and unfinished initialization on B",
+    "tags": [
+      "high_latency",
+      "unhealthy"
+    ],
+    "relevant": [
+      "runbook:resource-saturation",
+      "runbook:readiness-failures"
+    ]
+  },
+  {
+    "id": "fresh-21",
+    "group": "multi",
+    "query": "A has a doubled response average without diagnosis; B has never reported a sample",
+    "tags": [
+      "high_latency",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:latency",
+      "runbook:missing-telemetry"
+    ]
+  },
+  {
+    "id": "fresh-22",
+    "group": "multi",
+    "query": "A refuses socket connections and B has a stopped monitoring coroutine",
+    "tags": [
+      "unhealthy",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:backend-connectivity",
+      "runbook:probe-scheduling"
+    ]
+  },
+  {
+    "id": "fresh-23",
+    "group": "multi",
+    "query": "CPU contention on A, HTTP health error on B, and expired monitoring attempts on C",
+    "tags": [
+      "high_latency",
+      "unhealthy",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:resource-saturation",
+      "runbook:health-endpoint-failures",
+      "runbook:probe-timeouts"
+    ]
+  },
+  {
+    "id": "fresh-24",
+    "group": "multi",
+    "query": "A has growing job backlog, B is still initializing, C publishes an old sample",
+    "tags": [
+      "high_latency",
+      "unhealthy",
+      "unknown_latency"
+    ],
+    "relevant": [
+      "runbook:request-queueing",
+      "runbook:readiness-failures",
+      "runbook:stale-telemetry"
+    ]
+  },
+  {
+    "id": "fresh-25",
+    "group": "negative",
+    "query": "Slow responses",
+    "tags": [],
+    "relevant": []
+  },
+  {
+    "id": "fresh-26",
+    "group": "negative",
+    "query": "Failed readiness",
+    "tags": [
+      "unsupported"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "fresh-27",
+    "group": "negative",
+    "query": "Old samples",
+    "tags": [
+      "unknown_issue"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "fresh-28",
+    "group": "negative",
+    "query": "CPU pressure",
+    "tags": [],
+    "relevant": []
+  },
+  {
+    "id": "fresh-29",
+    "group": "negative",
+    "query": "",
+    "tags": [
+      "high_latency"
+    ],
+    "relevant": []
+  },
+  {
+    "id": "fresh-30",
+    "group": "negative",
+    "query": "   ",
+    "tags": [
+      "unhealthy"
+    ],
+    "relevant": []
+  }
+]

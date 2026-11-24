@@ -1,0 +1,6952 @@
+{
+  "metadata": {
+    "cases": 42,
+    "documents": 12,
+    "scope": "Synthetic development evaluation",
+    "held_out": false,
+    "shared_embeddings": true
+  },
+  "summary": {
+    "semantic": {
+      "hit_at_1": 0.8333333333333334,
+      "recall_at_3": 0.9444444444444444,
+      "mrr_at_3": 0.8935185185185185,
+      "multi_issue_recall": 0.8333333333333334,
+      "multi_issue_coverage": 0.8333333333333334,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "original_hybrid": {
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9444444444444444,
+      "mrr_at_3": 0.875,
+      "multi_issue_recall": 0.8333333333333334,
+      "multi_issue_coverage": 0.8333333333333334,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "relaxed_fts": {
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9027777777777778,
+      "mrr_at_3": 0.8518518518518519,
+      "multi_issue_recall": 0.9166666666666666,
+      "multi_issue_coverage": 1.0,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "relaxed_hybrid": {
+      "hit_at_1": 0.8333333333333334,
+      "recall_at_3": 0.9027777777777778,
+      "mrr_at_3": 0.875,
+      "multi_issue_recall": 0.9166666666666666,
+      "multi_issue_coverage": 0.9166666666666666,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "weighted_050": {
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9305555555555556,
+      "mrr_at_3": 0.8703703703703703,
+      "multi_issue_recall": 0.9166666666666666,
+      "multi_issue_coverage": 0.9166666666666666,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "weighted_025": {
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9305555555555556,
+      "mrr_at_3": 0.8703703703703703,
+      "multi_issue_recall": 0.9166666666666666,
+      "multi_issue_coverage": 0.9166666666666666,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    },
+    "weighted_coverage": {
+      "hit_at_1": 0.8055555555555556,
+      "recall_at_3": 0.9305555555555556,
+      "mrr_at_3": 0.8703703703703703,
+      "multi_issue_recall": 0.9166666666666666,
+      "multi_issue_coverage": 1.0,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "empty_positive_results": 0
+    }
+  },
+  "cases": {
+    "semantic": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "original_hybrid": [
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "relaxed_fts": [
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 2,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 1,
+        "ids": [
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:unhealthy"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:request-queueing"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "relaxed_hybrid": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:unhealthy"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-scheduling",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "weighted_050": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-scheduling",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "weighted_025": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-scheduling",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 0.5
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ],
+    "weighted_coverage": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "exact-01",
+        "group": "exact",
+        "query": "EWMA backend latency increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "exact-02",
+        "group": "exact",
+        "query": "CPU memory worker utilization resource saturation",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case_id": "exact-03",
+        "group": "exact",
+        "query": "database connection pool dependency latency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "exact-04",
+        "group": "exact",
+        "query": "queue depth worker concurrency request queueing",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-05",
+        "group": "exact",
+        "query": "unhealthy backend health endpoint logs",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-06",
+        "group": "exact",
+        "query": "health endpoint HTTP status code response body",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "exact-07",
+        "group": "exact",
+        "query": "network connection refused DNS resolution",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case_id": "exact-08",
+        "group": "exact",
+        "query": "readiness liveness initialization dependencies",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-09",
+        "group": "exact",
+        "query": "missing telemetry EWMA unknown latency",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-10",
+        "group": "exact",
+        "query": "async task scheduling manager startup probe",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "exact-11",
+        "group": "exact",
+        "query": "probe configured timeout elapsed duration",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "exact-12",
+        "group": "exact",
+        "query": "last successful probe timestamp stale measurement",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case_id": "paraphrase-01",
+        "group": "paraphrase",
+        "query": "Requests became slower across the replicas",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-02",
+        "group": "paraphrase",
+        "query": "The workers seem maxed out by processing demand",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-03",
+        "group": "paraphrase",
+        "query": "Responses are waiting on an external service",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "paraphrase-04",
+        "group": "paraphrase",
+        "query": "New requests pile up before being handled",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.3333333333333333,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-05",
+        "group": "paraphrase",
+        "query": "The service is failing its basic health assessment",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:unhealthy"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-06",
+        "group": "paraphrase",
+        "query": "The status URL responds with a server error",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "paraphrase-07",
+        "group": "paraphrase",
+        "query": "The manager cannot establish a socket connection",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case_id": "paraphrase-08",
+        "group": "paraphrase",
+        "query": "The process started but cannot yet take work",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-09",
+        "group": "paraphrase",
+        "query": "No recent speed measurements are available",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "paraphrase-10",
+        "group": "paraphrase",
+        "query": "Background checks never began after startup",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-11",
+        "group": "paraphrase",
+        "query": "Monitoring requests expire before completion",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "paraphrase-12",
+        "group": "paraphrase",
+        "query": "The chart shows old rather than fresh measurements",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:latency",
+          "runbook:request-queueing"
+        ],
+        "case_id": "mixed-01",
+        "group": "mixed",
+        "query": "Backend EWMA rose while CPU contention and garbage collection increased",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:resource-saturation"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:dependency-latency",
+          "runbook:resource-saturation"
+        ],
+        "case_id": "mixed-02",
+        "group": "mixed",
+        "query": "Slow responses coincide with database calls waiting for connections",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case_id": "mixed-03",
+        "group": "mixed",
+        "query": "Tail latency rose when request arrival rate exceeded worker concurrency",
+        "tags": [
+          "high_latency"
+        ],
+        "relevant": [
+          "runbook:request-queueing"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "mixed-04",
+        "group": "mixed",
+        "query": "HTTP 503 from health route while other application endpoints respond",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures",
+          "runbook:readiness-failures"
+        ],
+        "case_id": "mixed-05",
+        "group": "mixed",
+        "query": "Health probe reports connection refused and name resolution failures",
+        "tags": [
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case_id": "mixed-06",
+        "group": "mixed",
+        "query": "Last EWMA timestamp is old despite a previously valid sample",
+        "tags": [
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:resource-saturation",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-01",
+        "group": "multi",
+        "query": "CPU contention and a failing health endpoint",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:resource-saturation",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-02",
+        "group": "multi",
+        "query": "Slow dependency calls and manager probe timeouts",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:dependency-latency",
+          "runbook:probe-timeouts"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:stale-telemetry",
+          "runbook:backend-connectivity",
+          "runbook:probe-scheduling"
+        ],
+        "case_id": "multi-03",
+        "group": "multi",
+        "query": "Backend network connection failures and stale EWMA timestamps",
+        "tags": [
+          "unhealthy",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:backend-connectivity",
+          "runbook:stale-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:request-queueing",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-04",
+        "group": "multi",
+        "query": "Request queue growth plus failed health endpoint status",
+        "tags": [
+          "high_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:request-queueing",
+          "runbook:health-endpoint-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-scheduling",
+          "runbook:backend-connectivity"
+        ],
+        "case_id": "multi-05",
+        "group": "multi",
+        "query": "Probe task did not start and the backend is not ready to serve",
+        "tags": [
+          "unknown_latency",
+          "unhealthy"
+        ],
+        "relevant": [
+          "runbook:probe-scheduling",
+          "runbook:readiness-failures"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:missing-telemetry",
+          "runbook:resource-saturation",
+          "runbook:probe-timeouts"
+        ],
+        "case_id": "multi-06",
+        "group": "multi",
+        "query": "Elevated latency and missing telemetry in different replicas",
+        "tags": [
+          "high_latency",
+          "unknown_latency"
+        ],
+        "relevant": [
+          "runbook:latency",
+          "runbook:missing-telemetry"
+        ],
+        "has_relevant": true,
+        "negative_correct": null,
+        "issue_coverage": 1.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-01",
+        "group": "negative",
+        "query": "backend latency",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-02",
+        "group": "negative",
+        "query": "health endpoint failure",
+        "tags": [
+          "unsupported_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-03",
+        "group": "negative",
+        "query": "manager telemetry",
+        "tags": [
+          "not_a_real_issue"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-04",
+        "group": "negative",
+        "query": "resource saturation",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-05",
+        "group": "negative",
+        "query": "not a known symptom",
+        "tags": [],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": null
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case_id": "negative-06",
+        "group": "negative",
+        "query": "probe timeout",
+        "tags": [
+          "unrecognized"
+        ],
+        "relevant": [],
+        "has_relevant": false,
+        "negative_correct": true,
+        "issue_coverage": 0.0
+      }
+    ]
+  }
+}

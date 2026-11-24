@@ -1,0 +1,2981 @@
+{
+  "metadata": {
+    "dataset_sha256": "c2fe537f2738cace3c9715a11d13058cea4588c5896cfe42dcd2bf8743e343fe",
+    "cases": 30,
+    "documents": 12,
+    "model": "gemini-embedding-001",
+    "scope": "fresh synthetic queries; shared component timings, not runtime latency"
+  },
+  "summary": {
+    "semantic": {
+      "hit_at_1": 0.875,
+      "recall_at_3": 0.8680555555555556,
+      "mrr_at_3": 0.8958333333333334,
+      "multi_recall": 0.7291666666666666,
+      "multi_coverage": 0.8958333333333334,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "positive_mean_component_ms": 458.59897901148844
+    },
+    "semantic_coverage": {
+      "hit_at_1": 0.875,
+      "recall_at_3": 0.8819444444444444,
+      "mrr_at_3": 0.8958333333333334,
+      "multi_recall": 0.7708333333333334,
+      "multi_coverage": 1.0,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "positive_mean_component_ms": 458.5947722419708
+    },
+    "weighted_coverage": {
+      "hit_at_1": 0.7916666666666666,
+      "recall_at_3": 0.8611111111111112,
+      "mrr_at_3": 0.8541666666666666,
+      "multi_recall": 0.7083333333333334,
+      "multi_coverage": 1.0,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "positive_mean_component_ms": 460.4149796941783
+    },
+    "adaptive": {
+      "hit_at_1": 0.875,
+      "recall_at_3": 0.8611111111111112,
+      "mrr_at_3": 0.8958333333333334,
+      "multi_recall": 0.7083333333333334,
+      "multi_coverage": 1.0,
+      "negative_rejection": 1,
+      "tag_leakage": 0,
+      "positive_mean_component_ms": 458.9462116273353
+    }
+  },
+  "cases": {
+    "semantic": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-01",
+          "group": "single",
+          "query": "The moving average for response duration doubled on node B without other diagnostic signals",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 514.3301300704479
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-02",
+          "group": "single",
+          "query": "Heap pressure and repeated collection pauses coincide with slow processing",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.87026011478156
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-03",
+          "group": "single",
+          "query": "Most of the elapsed request time is spent waiting for an upstream RPC",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 424.01229799725115
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case": {
+          "id": "fresh-04",
+          "group": "single",
+          "query": "Incoming jobs accumulate faster than the executor can drain them",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 460.6250630458817
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:unhealthy",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-05",
+          "group": "single",
+          "query": "One replica is marked unavailable; the reason has not been established",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:unhealthy"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 414.42859498783946
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-06",
+          "group": "single",
+          "query": "The health handler answers with a non-success status and an error payload",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 420.9646249655634
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-07",
+          "group": "single",
+          "query": "Hostname lookup succeeds but opening the TCP session fails",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 438.40923300012946
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-08",
+          "group": "single",
+          "query": "The container is alive but initialization has not completed",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 445.2193530742079
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-09",
+          "group": "single",
+          "query": "The latency field is null and no valid sample has been recorded",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 426.4683739747852
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-10",
+          "group": "single",
+          "query": "The periodic monitoring coroutine is no longer running",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.51292200386524
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-11",
+          "group": "single",
+          "query": "Every monitoring attempt is cancelled at its configured deadline",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 512.746881111525
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-12",
+          "group": "single",
+          "query": "The dashboard keeps publishing a sample collected twenty minutes ago",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 511.56767981592566
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-13",
+          "group": "single",
+          "query": "CPU is near its ceiling and runnable threads are competing for execution",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 419.25936995539814
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-14",
+          "group": "single",
+          "query": "The target port is not accepting connections from the manager",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 501.02194910869
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-15",
+          "group": "single",
+          "query": "Check whether the background measurement loop was ever launched",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.3026129929349
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:latency",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-16",
+          "group": "single",
+          "query": "A growing backlog precedes the increase in response duration",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 520.8280880469829
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-17",
+          "group": "multi",
+          "query": "Executor backlog grows on A while B fails TCP connection attempts",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 505.607464001514
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-18",
+          "group": "multi",
+          "query": "Node A spends time waiting for upstream RPCs; monitoring of B expires at its deadline",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 414.2843500012532
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-19",
+          "group": "multi",
+          "query": "Health handler returns 500 on A and B publishes an old measurement",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 413.67195593193173
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:resource-saturation",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-20",
+          "group": "multi",
+          "query": "Memory pressure on A and unfinished initialization on B",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.35632702242583
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-21",
+          "group": "multi",
+          "query": "A has a doubled response average without diagnosis; B has never reported a sample",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:latency",
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 0.5,
+        "latency_ms": 502.784590004012
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:probe-timeouts",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-22",
+          "group": "multi",
+          "query": "A refuses socket connections and B has a stopped monitoring coroutine",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity",
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 396.96399902459234
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.6666666666666666,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-23",
+          "group": "multi",
+          "query": "CPU contention on A, HTTP health error on B, and expired monitoring attempts on C",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:health-endpoint-failures",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 0.6666666666666666,
+        "latency_ms": 422.62318497523665
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.6666666666666666,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:readiness-failures",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-24",
+          "group": "multi",
+          "query": "A has growing job backlog, B is still initializing, C publishes an old sample",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:readiness-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 518.5161910485476
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-25",
+          "group": "negative",
+          "query": "Slow responses",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.005375011824071407
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-26",
+          "group": "negative",
+          "query": "Failed readiness",
+          "tags": [
+            "unsupported"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.001750071533024311
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-27",
+          "group": "negative",
+          "query": "Old samples",
+          "tags": [
+            "unknown_issue"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.001500011421740055
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-28",
+          "group": "negative",
+          "query": "CPU pressure",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.0018329592421650887
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-29",
+          "group": "negative",
+          "query": "",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.0020419247448444366
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-30",
+          "group": "negative",
+          "query": "   ",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.0019170111045241356
+      }
+    ],
+    "semantic_coverage": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-01",
+          "group": "single",
+          "query": "The moving average for response duration doubled on node B without other diagnostic signals",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 514.3432130571455
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-02",
+          "group": "single",
+          "query": "Heap pressure and repeated collection pauses coincide with slow processing",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.87030214071274
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-03",
+          "group": "single",
+          "query": "Most of the elapsed request time is spent waiting for an upstream RPC",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 424.010465038009
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case": {
+          "id": "fresh-04",
+          "group": "single",
+          "query": "Incoming jobs accumulate faster than the executor can drain them",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 460.6224790913984
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:unhealthy",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-05",
+          "group": "single",
+          "query": "One replica is marked unavailable; the reason has not been established",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:unhealthy"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 414.42959394771606
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-06",
+          "group": "single",
+          "query": "The health handler answers with a non-success status and an error payload",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 420.9546239580959
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-07",
+          "group": "single",
+          "query": "Hostname lookup succeeds but opening the TCP session fails",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 438.41435795184225
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-08",
+          "group": "single",
+          "query": "The container is alive but initialization has not completed",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 445.2175199985504
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-09",
+          "group": "single",
+          "query": "The latency field is null and no valid sample has been recorded",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 426.4646240044385
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-10",
+          "group": "single",
+          "query": "The periodic monitoring coroutine is no longer running",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.51208893582225
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-11",
+          "group": "single",
+          "query": "Every monitoring attempt is cancelled at its configured deadline",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 512.7384640509263
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-12",
+          "group": "single",
+          "query": "The dashboard keeps publishing a sample collected twenty minutes ago",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 511.5664718905464
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-13",
+          "group": "single",
+          "query": "CPU is near its ceiling and runnable threads are competing for execution",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 419.24749489407986
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-14",
+          "group": "single",
+          "query": "The target port is not accepting connections from the manager",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 501.0186149738729
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-15",
+          "group": "single",
+          "query": "Check whether the background measurement loop was ever launched",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.30282195843756
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:latency",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-16",
+          "group": "single",
+          "query": "A growing backlog precedes the increase in response duration",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 520.8228370174766
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-17",
+          "group": "multi",
+          "query": "Executor backlog grows on A while B fails TCP connection attempts",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 505.6110880104825
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-18",
+          "group": "multi",
+          "query": "Node A spends time waiting for upstream RPCs; monitoring of B expires at its deadline",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 414.26964092534035
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-19",
+          "group": "multi",
+          "query": "Health handler returns 500 on A and B publishes an old measurement",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 413.6708319419995
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:resource-saturation",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-20",
+          "group": "multi",
+          "query": "Memory pressure on A and unfinished initialization on B",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.33853491954505
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:request-queueing",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-21",
+          "group": "multi",
+          "query": "A has a doubled response average without diagnosis; B has never reported a sample",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:latency",
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.781632123515
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:probe-timeouts",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-22",
+          "group": "multi",
+          "query": "A refuses socket connections and B has a stopped monitoring coroutine",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity",
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 396.9253310933709
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:probe-timeouts",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-23",
+          "group": "multi",
+          "query": "CPU contention on A, HTTP health error on B, and expired monitoring attempts on C",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:health-endpoint-failures",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 422.6244358578697
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.6666666666666666,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:readiness-failures",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-24",
+          "group": "multi",
+          "query": "A has growing job backlog, B is still initializing, C publishes an old sample",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:readiness-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 518.5170660261065
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-25",
+          "group": "negative",
+          "query": "Slow responses",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.05045998841524124
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-26",
+          "group": "negative",
+          "query": "Failed readiness",
+          "tags": [
+            "unsupported"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.0019170111045241356
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-27",
+          "group": "negative",
+          "query": "Old samples",
+          "tags": [
+            "unknown_issue"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.001959037035703659
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-28",
+          "group": "negative",
+          "query": "CPU pressure",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.00200001522898674
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-29",
+          "group": "negative",
+          "query": "",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.003834022209048271
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-30",
+          "group": "negative",
+          "query": "   ",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.0033329706639051437
+      }
+    ],
+    "weighted_coverage": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-01",
+          "group": "single",
+          "query": "The moving average for response duration doubled on node B without other diagnostic signals",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 530.7464979123324
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-02",
+          "group": "single",
+          "query": "Heap pressure and repeated collection pauses coincide with slow processing",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 410.42001510504633
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-03",
+          "group": "single",
+          "query": "Most of the elapsed request time is spent waiting for an upstream RPC",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 425.6156380288303
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case": {
+          "id": "fresh-04",
+          "group": "single",
+          "query": "Incoming jobs accumulate faster than the executor can drain them",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 461.0342000378296
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:unhealthy",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-05",
+          "group": "single",
+          "query": "One replica is marked unavailable; the reason has not been established",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:unhealthy"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 415.60554690659046
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-06",
+          "group": "single",
+          "query": "The health handler answers with a non-success status and an error payload",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 425.1324158394709
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-07",
+          "group": "single",
+          "query": "Hostname lookup succeeds but opening the TCP session fails",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 439.6075599361211
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-08",
+          "group": "single",
+          "query": "The container is alive but initialization has not completed",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 446.03266892954707
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-09",
+          "group": "single",
+          "query": "The latency field is null and no valid sample has been recorded",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 427.90020897518843
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-10",
+          "group": "single",
+          "query": "The periodic monitoring coroutine is no longer running",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 409.1777738649398
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:missing-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-11",
+          "group": "single",
+          "query": "Every monitoring attempt is cancelled at its configured deadline",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 513.7918699765578
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-12",
+          "group": "single",
+          "query": "The dashboard keeps publishing a sample collected twenty minutes ago",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 512.3569959541783
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-13",
+          "group": "single",
+          "query": "CPU is near its ceiling and runnable threads are competing for execution",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 420.3876940300688
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-14",
+          "group": "single",
+          "query": "The target port is not accepting connections from the manager",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 501.8498500576243
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-15",
+          "group": "single",
+          "query": "Check whether the background measurement loop was ever launched",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.52253690268844
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case": {
+          "id": "fresh-16",
+          "group": "single",
+          "query": "A growing backlog precedes the increase in response duration",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 522.1092089777812
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:dependency-latency",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-17",
+          "group": "multi",
+          "query": "Executor backlog grows on A while B fails TCP connection attempts",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 506.35815307032317
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-18",
+          "group": "multi",
+          "query": "Node A spends time waiting for upstream RPCs; monitoring of B expires at its deadline",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 415.4656770406291
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:stale-telemetry",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-19",
+          "group": "multi",
+          "query": "Health handler returns 500 on A and B publishes an old measurement",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 415.3424658579752
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-20",
+          "group": "multi",
+          "query": "Memory pressure on A and unfinished initialization on B",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 504.13646397646517
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:request-queueing",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-21",
+          "group": "multi",
+          "query": "A has a doubled response average without diagnosis; B has never reported a sample",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:latency",
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 503.6829930031672
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:probe-timeouts",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-22",
+          "group": "multi",
+          "query": "A refuses socket connections and B has a stopped monitoring coroutine",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity",
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 397.62726915068924
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:probe-timeouts",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-23",
+          "group": "multi",
+          "query": "CPU contention on A, HTTP health error on B, and expired monitoring attempts on C",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:health-endpoint-failures",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 423.4594610752538
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.6666666666666666,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-timeouts",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-24",
+          "group": "multi",
+          "query": "A has growing job backlog, B is still initializing, C publishes an old sample",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:readiness-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 519.5963480509818
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-25",
+          "group": "negative",
+          "query": "Slow responses",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.012499978765845299
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-26",
+          "group": "negative",
+          "query": "Failed readiness",
+          "tags": [
+            "unsupported"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.00866700429469347
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-27",
+          "group": "negative",
+          "query": "Old samples",
+          "tags": [
+            "unknown_issue"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.007833004929125309
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-28",
+          "group": "negative",
+          "query": "CPU pressure",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.00933394767343998
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-29",
+          "group": "negative",
+          "query": "",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.009416951797902584
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-30",
+          "group": "negative",
+          "query": "   ",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.009958981536328793
+      }
+    ],
+    "adaptive": [
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:latency",
+          "runbook:resource-saturation",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-01",
+          "group": "single",
+          "query": "The moving average for response duration doubled on node B without other diagnostic signals",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 514.3169210059568
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-02",
+          "group": "single",
+          "query": "Heap pressure and repeated collection pauses coincide with slow processing",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.8562180986628
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:dependency-latency",
+          "runbook:request-queueing",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-03",
+          "group": "single",
+          "query": "Most of the elapsed request time is spent waiting for an upstream RPC",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 424.00017206091434
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:resource-saturation",
+          "runbook:dependency-latency"
+        ],
+        "case": {
+          "id": "fresh-04",
+          "group": "single",
+          "query": "Incoming jobs accumulate faster than the executor can drain them",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 460.61964705586433
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:unhealthy",
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity"
+        ],
+        "case": {
+          "id": "fresh-05",
+          "group": "single",
+          "query": "One replica is marked unavailable; the reason has not been established",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:unhealthy"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 414.419510983862
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:unhealthy",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-06",
+          "group": "single",
+          "query": "The health handler answers with a non-success status and an error payload",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 420.9458319237456
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-07",
+          "group": "single",
+          "query": "Hostname lookup succeeds but opening the TCP session fails",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 438.41298192273825
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:backend-connectivity",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-08",
+          "group": "single",
+          "query": "The container is alive but initialization has not completed",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 445.2110209967941
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-09",
+          "group": "single",
+          "query": "The latency field is null and no valid sample has been recorded",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 426.45570798777044
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:stale-telemetry",
+          "runbook:probe-timeouts"
+        ],
+        "case": {
+          "id": "fresh-10",
+          "group": "single",
+          "query": "The periodic monitoring coroutine is no longer running",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 408.50604593288153
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:probe-scheduling",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-11",
+          "group": "single",
+          "query": "Every monitoring attempt is cancelled at its configured deadline",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 512.7299220766872
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "mrr": 0.5,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-12",
+          "group": "single",
+          "query": "The dashboard keeps publishing a sample collected twenty minutes ago",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 511.5526798181236
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:resource-saturation",
+          "runbook:request-queueing",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-13",
+          "group": "single",
+          "query": "CPU is near its ceiling and runnable threads are competing for execution",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 419.2372859688476
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:readiness-failures",
+          "runbook:health-endpoint-failures"
+        ],
+        "case": {
+          "id": "fresh-14",
+          "group": "single",
+          "query": "The target port is not accepting connections from the manager",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 501.00611499510705
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-scheduling",
+          "runbook:probe-timeouts",
+          "runbook:stale-telemetry"
+        ],
+        "case": {
+          "id": "fresh-15",
+          "group": "single",
+          "query": "Check whether the background measurement loop was ever launched",
+          "tags": [
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 502.29994603432715
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:request-queueing",
+          "runbook:latency",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-16",
+          "group": "single",
+          "query": "A growing backlog precedes the increase in response duration",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 520.8075860282406
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:dependency-latency",
+          "runbook:readiness-failures"
+        ],
+        "case": {
+          "id": "fresh-17",
+          "group": "multi",
+          "query": "Executor backlog grows on A while B fails TCP connection attempts",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:backend-connectivity"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 506.32906809914857
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:dependency-latency",
+          "runbook:missing-telemetry"
+        ],
+        "case": {
+          "id": "fresh-18",
+          "group": "multi",
+          "query": "Node A spends time waiting for upstream RPCs; monitoring of B expires at its deadline",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:dependency-latency",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 415.3745910152793
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:stale-telemetry",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-19",
+          "group": "multi",
+          "query": "Health handler returns 500 on A and B publishes an old measurement",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:health-endpoint-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 415.2947139227763
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:resource-saturation",
+          "runbook:latency"
+        ],
+        "case": {
+          "id": "fresh-20",
+          "group": "multi",
+          "query": "Memory pressure on A and unfinished initialization on B",
+          "tags": [
+            "high_latency",
+            "unhealthy"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:readiness-failures"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 504.0917119476944
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:probe-timeouts",
+          "runbook:request-queueing",
+          "runbook:probe-scheduling"
+        ],
+        "case": {
+          "id": "fresh-21",
+          "group": "multi",
+          "query": "A has a doubled response average without diagnosis; B has never reported a sample",
+          "tags": [
+            "high_latency",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:latency",
+            "runbook:missing-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 503.65720002446324
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.5,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:backend-connectivity",
+          "runbook:probe-timeouts",
+          "runbook:unhealthy"
+        ],
+        "case": {
+          "id": "fresh-22",
+          "group": "multi",
+          "query": "A refuses socket connections and B has a stopped monitoring coroutine",
+          "tags": [
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:backend-connectivity",
+            "runbook:probe-scheduling"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 397.6027270546183
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:health-endpoint-failures",
+          "runbook:probe-timeouts",
+          "runbook:resource-saturation"
+        ],
+        "case": {
+          "id": "fresh-23",
+          "group": "multi",
+          "query": "CPU contention on A, HTTP health error on B, and expired monitoring attempts on C",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:resource-saturation",
+            "runbook:health-endpoint-failures",
+            "runbook:probe-timeouts"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 423.4281680546701
+      },
+      {
+        "hit_at_1": 1.0,
+        "recall_at_3": 0.6666666666666666,
+        "mrr": 1.0,
+        "tag_leakage": 0,
+        "returned": 3,
+        "ids": [
+          "runbook:readiness-failures",
+          "runbook:probe-timeouts",
+          "runbook:request-queueing"
+        ],
+        "case": {
+          "id": "fresh-24",
+          "group": "multi",
+          "query": "A has growing job backlog, B is still initializing, C publishes an old sample",
+          "tags": [
+            "high_latency",
+            "unhealthy",
+            "unknown_latency"
+          ],
+          "relevant": [
+            "runbook:request-queueing",
+            "runbook:readiness-failures",
+            "runbook:stale-telemetry"
+          ]
+        },
+        "coverage": 1.0,
+        "latency_ms": 519.5533060468733
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-25",
+          "group": "negative",
+          "query": "Slow responses",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.0020420411601662636
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-26",
+          "group": "negative",
+          "query": "Failed readiness",
+          "tags": [
+            "unsupported"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.0017499551177024841
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-27",
+          "group": "negative",
+          "query": "Old samples",
+          "tags": [
+            "unknown_issue"
+          ],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.0017079291865229607
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-28",
+          "group": "negative",
+          "query": "CPU pressure",
+          "tags": [],
+          "relevant": []
+        },
+        "coverage": null,
+        "latency_ms": 0.001625041477382183
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-29",
+          "group": "negative",
+          "query": "",
+          "tags": [
+            "high_latency"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.0016670674085617065
+      },
+      {
+        "hit_at_1": 0.0,
+        "recall_at_3": null,
+        "mrr": 0.0,
+        "tag_leakage": 0,
+        "returned": 0,
+        "ids": [],
+        "case": {
+          "id": "fresh-30",
+          "group": "negative",
+          "query": "   ",
+          "tags": [
+            "unhealthy"
+          ],
+          "relevant": []
+        },
+        "coverage": 0.0,
+        "latency_ms": 0.0016669509932398796
+      }
+    ]
+  }
+}
