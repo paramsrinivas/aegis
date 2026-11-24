@@ -10,6 +10,9 @@ from fastapi.concurrency import run_in_threadpool
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     from app.storage import initialize_db
+    from app.observability import configure_diagnostic_logging
+
+    configure_diagnostic_logging()
 
     await run_in_threadpool(initialize_db)
 

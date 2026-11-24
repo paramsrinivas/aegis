@@ -12,6 +12,7 @@ from app.agents.triage import prepare_triage
 from app.agents.retrieval import retrieve_context
 from app.agents.hypothesis import build_hypothesis_agent
 from app.agents.validation import validate_selection
+from app.observability import timed_stage
 
 
 WORKFLOW_TIMEOUT_SECONDS = 40.0
@@ -28,15 +29,17 @@ async def run_diagnostic_workflow(
     stages = {}
 
     def triage():
-        stages["triage"] = prepare_triage(snapshot)
-        return stages["triage"]
+        with timed_stage("triage"):
+            stages["triage"] = prepare_triage(snapshot)
+            return stages["triage"]
 
     async def retrieval():
-        stages["retrieval"] = await asyncio.to_thread(
-            retrieve_context,
-            snapshot,
-        )
-        return stages["retrieval"]
+        with timed_stage("retrieval"):
+            stages["retrieval"] = await asyncio.to_thread(
+                retrieve_context,
+                snapshot,
+            )
+            return stages["retrieval"]
 
     async def prepare_model_request(context, llm_request):
         reasoning_context = {
@@ -88,17 +91,18 @@ async def run_diagnostic_workflow(
     )
 
     def grounding(hypothesis_output):
-        if isinstance(hypothesis_output, str):
-            hypothesis_output = json.loads(
-                hypothesis_output
+        with timed_stage("grounding"):
+            if isinstance(hypothesis_output, str):
+                hypothesis_output = json.loads(
+                    hypothesis_output
+                )
+
+            stages["explanation"] = validate_selection(
+                snapshot,
+                hypothesis_output,
             )
 
-        stages["explanation"] = validate_selection(
-            snapshot,
-            hypothesis_output,
-        )
-
-        return stages["explanation"]
+            return stages["explanation"]
 
     grounding_node = FunctionNode(
         name="grounding",
@@ -121,27 +125,28 @@ async def run_diagnostic_workflow(
         app_name="aegis_diagnostics",
     )
 
-    async with asyncio.timeout(
-        WORKFLOW_TIMEOUT_SECONDS
-    ):
-        session = await runner.session_service.create_session(
-            app_name="aegis_diagnostics",
-            user_id="incident-investigator",
-        )
-
-        async for event in runner.run_async(
-            user_id="incident-investigator",
-            session_id=session.id,
-            new_message=types.Content(
-                role="user",
-                parts=[
-                    types.Part(
-                        text="Investigate the supplied incident."
-                    )
-                ],
-            ),
+    with timed_stage("workflow"):
+        async with asyncio.timeout(
+            WORKFLOW_TIMEOUT_SECONDS
         ):
-            pass
+            session = await runner.session_service.create_session(
+                app_name="aegis_diagnostics",
+                user_id="incident-investigator",
+            )
+
+            async for event in runner.run_async(
+                user_id="incident-investigator",
+                session_id=session.id,
+                new_message=types.Content(
+                    role="user",
+                    parts=[
+                        types.Part(
+                            text="Investigate the supplied incident."
+                        )
+                    ],
+                ),
+            ):
+                pass
 
     if "explanation" not in stages:
         raise RuntimeError(

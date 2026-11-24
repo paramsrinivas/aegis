@@ -4,6 +4,12 @@ import logging
 import os
 
 from fastapi.concurrency import run_in_threadpool
+from app.observability import (
+    diagnostic_trace,
+    timed_stage,
+    classify_failure,
+    emit_outcome,
+)
 
 from app.ai import DEFAULT_MODEL
 from app.grounding import build_grounded_explanation
@@ -16,10 +22,20 @@ logger = logging.getLogger(__name__)
 async def explain_with_adk(incident: dict) -> dict:
     """Run ADK diagnostics with deterministic fallback."""
 
+    with diagnostic_trace():
+        with timed_stage("request"):
+            return await _explain_with_adk_traced(incident)
+
+
+async def _explain_with_adk_traced(incident: dict) -> dict:
+    """Execute the existing ADK service within its trace."""
+
     model = os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
+    failure_reason = None
 
     try:
         if not os.getenv("GEMINI_API_KEY", "").strip():
+            failure_reason = "missing_api_key"
             raise RuntimeError("Gemini API key missing")
 
         from app.agents.workflow import (
@@ -28,7 +44,7 @@ async def explain_with_adk(incident: dict) -> dict:
 
         from google import genai
         from google.genai import types
-        from google.adk.models.google_llm import Gemini
+        from app.agents.model import ObservedGemini
 
         client = genai.Client(
             api_key=os.environ["GEMINI_API_KEY"].strip(),
@@ -42,7 +58,7 @@ async def explain_with_adk(incident: dict) -> dict:
         )
 
         try:
-            adk_model = Gemini(
+            adk_model = ObservedGemini(
                 model=model,
                 client=client,
             )
@@ -57,6 +73,8 @@ async def explain_with_adk(incident: dict) -> dict:
             finally:
                 client.close()
 
+        emit_outcome("available")
+
         return {
             **result,
             "model": model,
@@ -70,25 +88,32 @@ async def explain_with_adk(incident: dict) -> dict:
         }
 
     except Exception as exc:
+        failure_reason = (
+            failure_reason or classify_failure(exc)
+        )
+
         logger.warning(
             "ADK workflow failed: type=%s",
             type(exc).__name__,
         )
 
-        runbooks = await run_in_threadpool(
-            retrieve,
-            incident["findings"],
-        )
+        with timed_stage("fallback"):
+            runbooks = await run_in_threadpool(
+                retrieve,
+                incident["findings"],
+            )
 
-        explanation = build_grounded_explanation(
-            incident,
-            {"hypotheses": []},
-        )
+            explanation = build_grounded_explanation(
+                incident,
+                {"hypotheses": []},
+            )
 
         explanation["grounding"].update({
             "hypothesis_selection": "unavailable",
             "hypothesis_wording": "not_applicable",
         })
+
+        emit_outcome("degraded", failure_reason)
 
         return {
             "explanation": explanation,
