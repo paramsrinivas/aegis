@@ -9,20 +9,42 @@ import pytest
 from rag.documents import load_runbooks, parse_runbook
 
 
-def test_loads_three_reviewed_runbooks():
+
+def test_loads_twelve_reviewed_runbooks():
     documents = load_runbooks()
 
-    assert len(documents) == 3
-    assert {doc["document_id"] for doc in documents} == {
+    expected_ids = {
         "runbook:latency",
         "runbook:missing-telemetry",
         "runbook:unhealthy",
+        "runbook:resource-saturation",
+        "runbook:dependency-latency",
+        "runbook:request-queueing",
+        "runbook:health-endpoint-failures",
+        "runbook:backend-connectivity",
+        "runbook:readiness-failures",
+        "runbook:probe-scheduling",
+        "runbook:probe-timeouts",
+        "runbook:stale-telemetry",
+    }
+
+    assert len(documents) == 12
+    assert {doc["document_id"] for doc in documents} == expected_ids
+
+    counts = {
+        tag: sum(tag in doc["issue_tags"] for doc in documents)
+        for tag in ("high_latency", "unhealthy", "unknown_latency")
+    }
+    assert counts == {
+        "high_latency": 4,
+        "unhealthy": 4,
+        "unknown_latency": 4,
     }
 
 
 def test_documents_have_stable_provenance():
     for document in load_runbooks():
-        assert document["source_path"].startswith("runbooks/")
+        assert document["source_path"].startswith(("runbooks/", "rag_runbooks/"))
         assert document["title"]
         assert document["issue_tags"]
         assert len(document["content_sha256"]) == 64

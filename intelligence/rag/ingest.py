@@ -58,7 +58,8 @@ def ingest_documents(connection, client, documents):
         with connection.cursor() as cursor:
             cursor.execute(
                 """
-                SELECT content_sha256, embedding_model, embedding IS NOT NULL
+                SELECT content_sha256, embedding_model,
+                       embedding IS NOT NULL, source_path
                 FROM rag_documents
                 WHERE document_id = %s
                 """,
@@ -71,6 +72,7 @@ def ingest_documents(connection, client, documents):
             and existing[0] == document["content_sha256"]
             and existing[1] == EMBEDDING_MODEL
             and existing[2]
+            and existing[3] == document["source_path"]
         ):
             results["skipped"] += 1
             continue

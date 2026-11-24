@@ -6,15 +6,23 @@ from pathlib import Path
 
 
 RUNBOOK_DIR = Path(__file__).resolve().parent.parent / "runbooks"
+RAG_RUNBOOK_DIR = Path(__file__).resolve().parent.parent / "rag_runbooks"
 
 
 def parse_runbook(path: Path) -> dict:
-    """Parse a reviewed Markdown runbook and preserve its provenance."""
-    path = Path(path).resolve()
-    root = RUNBOOK_DIR.resolve()
+    """Parse an approved Markdown document and preserve provenance."""
 
-    if path.parent != root or path.suffix != ".md":
-        raise ValueError("Runbook must be a Markdown file in the reviewed directory")
+    path = Path(path).resolve()
+
+    allowed_roots = {
+        RUNBOOK_DIR.resolve(),
+        RAG_RUNBOOK_DIR.resolve(),
+    }
+
+    if path.parent not in allowed_roots or path.suffix != ".md":
+        raise ValueError(
+            "Runbook must be a Markdown file in a reviewed directory"
+        )
 
     content = path.read_text(encoding="utf-8")
     lines = content.splitlines()
@@ -22,10 +30,15 @@ def parse_runbook(path: Path) -> dict:
     if not lines or not lines[0].startswith("# "):
         raise ValueError(f"Runbook missing title: {path.name}")
 
-    tag_lines = [line for line in lines if line.startswith("Tags:")]
+    tag_lines = [
+        line for line in lines
+        if line.startswith("Tags:")
+    ]
 
     if len(tag_lines) != 1:
-        raise ValueError(f"Runbook must have exactly one Tags field: {path.name}")
+        raise ValueError(
+            f"Runbook must have exactly one Tags field: {path.name}"
+        )
 
     tags = sorted({
         tag.strip()
@@ -38,7 +51,7 @@ def parse_runbook(path: Path) -> dict:
 
     return {
         "document_id": f"runbook:{path.stem}",
-        "source_path": f"runbooks/{path.name}",
+        "source_path": f"{path.parent.name}/{path.name}",
         "title": lines[0][2:].strip(),
         "content": content,
         "issue_tags": tags,
@@ -49,9 +62,18 @@ def parse_runbook(path: Path) -> dict:
 
 
 def load_runbooks() -> list[dict]:
-    """Load reviewed runbooks in deterministic source-path order."""
-    return [
+    """Load both reviewed corpora with unique document identifiers."""
+
+    documents = [
         parse_runbook(path)
-        for path in sorted(RUNBOOK_DIR.glob("*.md"))
+        for root in (RUNBOOK_DIR, RAG_RUNBOOK_DIR)
+        for path in sorted(root.glob("*.md"))
     ]
+
+    ids = [doc["document_id"] for doc in documents]
+
+    if len(ids) != len(set(ids)):
+        raise ValueError("Duplicate runbook document identifiers")
+
+    return documents
 

@@ -84,7 +84,7 @@ def test_embedding_request_configuration():
 def test_unchanged_document_skips_embedding():
     document = sample_document()
     connection, cursor = make_connection(
-        existing=(document["content_sha256"], EMBEDDING_MODEL, True)
+        existing=(document["content_sha256"], EMBEDDING_MODEL, True, document["source_path"])
     )
     client = make_client()
 
@@ -110,7 +110,7 @@ def test_new_document_inserted():
 
 def test_changed_document_updated():
     connection, cursor = make_connection(
-        existing=("b" * 64, EMBEDDING_MODEL, True)
+        existing=("b" * 64, EMBEDDING_MODEL, True, "runbooks/latency.md")
     )
     client = make_client()
 
@@ -137,3 +137,34 @@ def test_embedding_failure_prevents_upsert():
     assert cursor.execute.call_count == 1
     connection.transaction.assert_not_called()
 
+
+
+def test_relocated_document_updates_provenance():
+    document = sample_document()
+    document["source_path"] = "rag_runbooks/latency.md"
+
+    connection, cursor = make_connection(
+        existing=(
+            document["content_sha256"],
+            EMBEDDING_MODEL,
+            True,
+            "runbooks/latency.md",
+        )
+    )
+
+    client = make_client()
+
+    result = ingest_documents(
+        connection, client, [document]
+    )
+
+    assert result == {
+        "inserted": 0,
+        "updated": 1,
+        "skipped": 0,
+    }
+
+    client.models.embed_content.assert_called_once()
+
+    sql, parameters = cursor.execute.call_args.args
+    assert parameters[1] == "rag_runbooks/latency.md"

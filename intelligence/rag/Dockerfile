@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY rag /app/rag
 COPY runbooks /app/runbooks
-
+COPY rag_runbooks /app/rag_runbooks
 RUN useradd --create-home --uid 10001 aegis
 
 USER aegis
