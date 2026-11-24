@@ -184,4 +184,3 @@ def test_manager_unavailable(failure):
             asyncio.run(investigate(100.0))
 
     assert error.value.status_code == 503
-

@@ -126,4 +126,3 @@ def build_grounded_explanation(
             "root_cause_confirmed": False,
         },
     }
-

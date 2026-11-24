@@ -79,6 +79,29 @@ def build_evidence(incident: dict) -> list[dict]:
             limitation,
         )
 
+    # Append historical evidence after current snapshot facts.
+    # This preserves all existing evidence IDs.
+
+    for history in incident.get("historical_context", []):
+        backend = history["backend"]
+
+        for statement in history["evidence"]:
+            add(
+                "historical_observation",
+                {
+                    "sample_count": history["sample_count"],
+                    "threshold_ms": history["threshold_ms"],
+                    "first_observed_at": (
+                        history["first_observed_at"]
+                    ),
+                    "last_observed_at": (
+                        history["last_observed_at"]
+                    ),
+                },
+                f"Historical context: {statement}",
+                backend=backend,
+            )
+
     return evidence
 
 
@@ -116,6 +139,7 @@ def grounded_observations(evidence: list[dict]) -> list[str]:
         "missing_latency",
         "finding",
         "severity",
+        "historical_observation",
     }
 
     return [

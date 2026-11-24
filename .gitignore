@@ -35,3 +35,10 @@ htmlcov/
 *.log
 *.db
 *.sqlite3
+
+# Runtime telemetry storage
+data/
+*.db-wal
+*.db-shm
+*.sqlite3-wal
+*.sqlite3-shm

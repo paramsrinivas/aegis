@@ -451,4 +451,3 @@ def test_invalid_model_output_triggers_fallback(
     )
 
     assert result["actions_executed"] == []
-

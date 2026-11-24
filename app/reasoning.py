@@ -148,4 +148,3 @@ def validate_hypotheses(
         })
 
     return validated
-

@@ -84,4 +84,3 @@ def retrieve(findings: list[dict], limit: int = 3) -> list[dict]:
     ranked.sort(key=lambda item: (-item[0], item[1]))
 
     return [item[2] for item in ranked[:limit]]
-

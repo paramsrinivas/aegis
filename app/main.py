@@ -3,7 +3,24 @@ import math
 import httpx
 from fastapi import FastAPI, HTTPException, Query
 
-app = FastAPI(title="Aegis AI: Incident Diagnostics", version="0.1.0")
+from contextlib import asynccontextmanager
+from fastapi.concurrency import run_in_threadpool
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    from app.storage import initialize_db
+
+    await run_in_threadpool(initialize_db)
+
+    yield
+
+
+app = FastAPI(
+    title="Aegis AI: Incident Diagnostics",
+    version="0.1.0",
+    lifespan=lifespan,
+)
 
 @app.get('/healthz')
 async def healthz():
@@ -115,6 +132,13 @@ async def explain(threshold_ms: float = Query(100.0, gt=0)):
     from fastapi.concurrency import run_in_threadpool
 
     incident = await investigate(threshold_ms=threshold_ms)
+    from app.historical_context import enrich_incident
+
+    incident = await run_in_threadpool(
+        enrich_incident,
+        incident,
+    )
+
     runbooks = retrieve(incident["findings"])
 
     model = os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
@@ -158,3 +182,37 @@ async def explain(threshold_ms: float = Query(100.0, gt=0)):
         "actions_executed": [],
     }
 
+@app.post("/collect", status_code=201)
+async def collect(
+    threshold_ms: float = Query(
+        100.0,
+        gt=0,
+        allow_inf_nan=False,
+    ),
+):
+    """Collect and persist a telemetry snapshot."""
+
+    import logging
+    import sqlite3
+
+    from app.collector import collect_telemetry
+
+    try:
+        return await collect_telemetry(
+            threshold_ms=threshold_ms
+        )
+
+    except (sqlite3.Error, OSError, RuntimeError) as exc:
+        logging.getLogger(__name__).error(
+            "Telemetry persistence failed: type=%s",
+            type(exc).__name__,
+        )
+
+        raise HTTPException(
+            status_code=503,
+            detail="Telemetry persistence unavailable",
+        ) from exc
+
+from app.history import router as history_router
+
+app.include_router(history_router)

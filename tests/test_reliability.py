@@ -238,7 +238,11 @@ def test_deterministic_fallback(status):
     ):
         result = asyncio.run(explain(100.0))
 
-    assert result["incident"] == INCIDENT
+    assert result["incident"] == {
+        **INCIDENT,
+        "historical_context": [],
+        "historical_status": "no_relevant_history",
+    }
     assert result["ai_generated"] is False
     assert result["ai_status"] == "degraded"
     assert result["model"] is None
@@ -282,4 +286,3 @@ def test_telemetry_failure_is_not_hidden():
 
     assert error.value.status_code == 503
     generate.assert_not_called()
-

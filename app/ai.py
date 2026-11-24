@@ -179,4 +179,3 @@ def explain_with_gemini(
             status_code=502,
             detail="Gemini explanation unavailable or invalid",
         ) from exc
-
