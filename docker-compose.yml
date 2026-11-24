@@ -166,6 +166,9 @@ services:
       AEGIS_DB_PATH: /app/data/aegis.db
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
+      AEGIS_RAG_MODE: ${AEGIS_RAG_MODE:-off}
+      AEGIS_VECTOR_DB_PASSWORD: ${AEGIS_VECTOR_DB_PASSWORD:-aegis_local_dev}
+      AEGIS_VECTOR_DATABASE_URL: ${AEGIS_VECTOR_DATABASE_URL:-}
     ports:
       - "127.0.0.1:8010:8010"
     volumes:

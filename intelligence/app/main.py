@@ -128,7 +128,6 @@ def deterministic_fallback(incident: dict) -> dict:
 
 @app.get('/explain')
 async def explain(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False)):
-    from app.knowledge import retrieve
     from app.ai import explain_with_gemini, DEFAULT_MODEL
     from fastapi.concurrency import run_in_threadpool
 
@@ -140,7 +139,10 @@ async def explain(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False))
         incident,
     )
 
-    runbooks = retrieve(incident["findings"])
+    from app.rag_service import select_runbooks
+    runbooks, retrieval_metadata = await run_in_threadpool(
+        select_runbooks, incident,
+    )
 
     model = os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
 
@@ -181,6 +183,7 @@ async def explain(threshold_ms: float = Query(100.0, gt=0, allow_inf_nan=False))
         "fallback_reason": fallback_reason,
         "review_required": True,
         "actions_executed": [],
+        **({"retrieval": retrieval_metadata} if retrieval_metadata is not None else {}),
     }
 
 @app.post("/collect", status_code=201)

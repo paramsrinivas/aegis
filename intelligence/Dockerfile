@@ -21,6 +21,8 @@ RUN python -m pip install --no-cache-dir \
 COPY --chown=aegis:aegis app/ ./app/
 COPY --chown=aegis:aegis dashboard/ ./dashboard/
 COPY --chown=aegis:aegis runbooks/ ./runbooks/
+COPY --chown=aegis:aegis rag/ ./rag/
+COPY --chown=aegis:aegis rag_runbooks/ ./rag_runbooks/
 COPY --chown=aegis:aegis .streamlit/ ./.streamlit/
 
 RUN mkdir -p /app/data \
