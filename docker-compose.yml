@@ -1,6 +1,29 @@
+
 name: aegis
 
 services:
+
+  vector-db:
+    image: pgvector/pgvector:pg16
+    profiles:
+      - rag
+    environment:
+      POSTGRES_DB: aegis_rag
+      POSTGRES_USER: aegis_rag
+      POSTGRES_PASSWORD: ${AEGIS_VECTOR_DB_PASSWORD:-aegis_local_dev}
+    volumes:
+      - vector_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U aegis_rag -d aegis_rag
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - intelligence
+    restart: unless-stopped
+
   manager:
     build: ./manager
     container_name: manager
@@ -201,8 +224,11 @@ volumes:
   telemetry_data:
     name: ${AEGIS_TELEMETRY_VOLUME:-aegis_telemetry_data}
 
+  vector_data:
+
 networks:
   aegisnet:
     driver: bridge
+
   intelligence:
     driver: bridge
