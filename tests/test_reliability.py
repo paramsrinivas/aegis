@@ -51,6 +51,16 @@ VALID_EXPLANATION = {
     "uncertainty": "Root cause is unknown.",
 }
 
+VALID_MODEL_OUTPUT = {
+    "hypotheses": [
+        {
+            "hypothesis_id": "resource_contention",
+            "backend": "backend2",
+            "evidence_ids": ["E003", "E004"],
+        }
+    ]
+}
+
 
 class ProviderError(Exception):
     def __init__(self, code):
@@ -97,16 +107,37 @@ def test_retrieval_unknown_issue():
     assert results == []
 
 
+
 def test_gemini_success(mock_gemini):
     generate, sleep = mock_gemini
 
     generate.return_value = MagicMock(
-        text=json.dumps(VALID_EXPLANATION)
+        text=json.dumps(VALID_MODEL_OUTPUT)
     )
 
     result = ai.explain_with_gemini(INCIDENT, [])
 
-    assert result == VALID_EXPLANATION
+    assert result["grounding"]["observations"] == "deterministic"
+    assert result["grounding"]["evidence_references_validated"] is True
+    assert result["grounding"]["root_cause_confirmed"] is False
+
+    assert result["hypotheses"] == [
+        "backend2 may be experiencing resource contention."
+    ]
+
+    assert result["hypothesis_details"][0]["evidence_ids"] == [
+        "E003", "E004"
+    ]
+
+    assert result["hypothesis_details"][0]["status"] == "unconfirmed"
+
+    assert any(
+        item["kind"] == "latency"
+        and item["backend"] == "backend2"
+        and item["value"] == 145.0
+        for item in result["evidence"]
+    )
+
     assert generate.call_count == 1
     sleep.assert_not_called()
 
@@ -116,12 +147,21 @@ def test_gemini_retry_then_success(mock_gemini):
 
     generate.side_effect = [
         ProviderError(503),
-        MagicMock(text=json.dumps(VALID_EXPLANATION)),
+        MagicMock(text=json.dumps(VALID_MODEL_OUTPUT)),
     ]
 
     result = ai.explain_with_gemini(INCIDENT, [])
 
-    assert result == VALID_EXPLANATION
+    assert result["grounding"]["observations"] == "deterministic"
+    assert result["grounding"]["evidence_references_validated"] is True
+    assert result["grounding"]["root_cause_confirmed"] is False
+
+    assert result["hypothesis_details"][0]["hypothesis_id"] == (
+        "resource_contention"
+    )
+
+    assert result["hypothesis_details"][0]["status"] == "unconfirmed"
+
     assert generate.call_count == 2
     sleep.assert_called_once_with(1)
 

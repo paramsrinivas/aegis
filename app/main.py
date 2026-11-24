@@ -43,69 +43,69 @@ async def investigate(threshold_ms: float = Query(100.0, gt=0)):
 
 
 
+
 def deterministic_fallback(incident: dict) -> dict:
-    """Return evidence-based diagnostics without an AI provider."""
+    """Return a grounded explanation without an AI provider."""
 
-    observations = []
+    from app.grounding import build_grounded_explanation
 
-    for backend in incident["backends"]:
-        name = backend["name"]
-        health = "healthy" if backend["healthy"] else "unhealthy"
-        latency = backend["ewma_ms"]
+    explanation = build_grounded_explanation(
+        incident,
+        {"hypotheses": []},
+    )
 
-        observations.append(f"{name} is marked {health}.")
+    explanation["summary"] = (
+        f"Detected {len(incident['findings'])} finding(s). "
+        f"Incident severity: {incident['severity']}. "
+        "AI explanation unavailable; "
+        "deterministic diagnostics provided."
+    )
 
-        if latency is None:
-            observations.append(f"{name}: EWMA latency unavailable.")
-        else:
-            observations.append(
-                f"{name}: EWMA latency is {latency:.2f} ms."
-            )
-
-    checks = []
+    checks = list(explanation["recommended_checks"])
 
     for finding in incident["findings"]:
-        name = finding["backend"]
+        backend = finding["backend"]
         issue = finding["issue"]
 
         if issue == "high_latency":
             checks.extend([
-                f"Compare repeated latency measurements for {name}.",
-                f"Inspect CPU, memory and request volume for {name}.",
-                f"Check queueing and dependency latency for {name}.",
+                f"{backend}: Inspect CPU and memory utilization.",
+                f"{backend}: Inspect request volume and queueing.",
+                f"{backend}: Check downstream dependency latency.",
             ])
 
         elif issue == "unhealthy":
             checks.extend([
-                f"Inspect health endpoint responses for {name}.",
-                f"Review container logs and readiness for {name}.",
-                f"Check dependency connectivity for {name}.",
+                f"{backend}: Review container logs and readiness.",
+                f"{backend}: Check dependency connectivity.",
             ])
 
         elif issue == "unknown_latency":
             checks.extend([
-                f"Verify telemetry freshness for {name}.",
-                f"Inspect manager probe failures for {name}.",
+                f"{backend}: Verify telemetry freshness.",
+                f"{backend}: Inspect manager probe failures.",
             ])
 
-    if not checks:
-        checks.append("Continue monitoring backend health and latency.")
+    explanation["recommended_checks"] = list(
+        dict.fromkeys(checks)
+    )
 
-    return {
-        "summary": (
-            f"Detected {len(incident['findings'])} finding(s). "
-            f"Incident severity: {incident['severity']}. "
-            "AI explanation unavailable; deterministic diagnostics provided."
-        ),
-        "observations": observations,
-        "hypotheses": [],
-        "recommended_checks": list(dict.fromkeys(checks)),
-        "uncertainty": (
-            "Root cause is unknown. "
-            "A single telemetry snapshot does not establish "
-            "persistence or root cause."
-        ),
+    explanation["uncertainty"] = (
+        "Root cause is unknown. "
+        "AI hypothesis selection was unavailable. "
+        "A single telemetry snapshot does not establish "
+        "persistence or causality."
+    )
+
+    explanation["grounding"] = {
+        "observations": "deterministic",
+        "hypothesis_selection": "unavailable",
+        "hypothesis_wording": "not_applicable",
+        "evidence_references_validated": True,
+        "root_cause_confirmed": False,
     }
+
+    return explanation
 
 
 @app.get('/explain')
