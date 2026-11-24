@@ -1,3 +1,5 @@
+name: aegis
+
 services:
   manager:
     build: ./manager
@@ -8,7 +10,7 @@ services:
     working_dir: /app
     command: ["uvicorn", "manager:app", "--host", "0.0.0.0", "--port", "8001", "--loop", "asyncio", "--workers", "1"]
     ports:
-      - "8001:8001"
+      - "127.0.0.1:8001:8001"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/weights"]
@@ -17,8 +19,6 @@ services:
       retries: 3
     networks:
       - aegisnet
-
-
 
   router:
     build: .
@@ -35,7 +35,7 @@ services:
       - backend2
       - backend3
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
@@ -60,7 +60,7 @@ services:
       - FAIL_RATE=0.0
     command: ["python", "backend.py"]
     ports:
-      - "8101:8101"
+      - "127.0.0.1:8101:8101"
     restart: unless-stopped
     networks:
       - aegisnet
@@ -80,7 +80,7 @@ services:
       - FAIL_RATE=0.05
     command: ["python", "backend.py"]
     ports:
-      - "8102:8102"
+      - "127.0.0.1:8102:8102"
     restart: unless-stopped
     networks:
       - aegisnet
@@ -100,7 +100,7 @@ services:
       - FAIL_RATE=0.0
     command: ["python", "backend.py"]
     ports:
-      - "8103:8103"
+      - "127.0.0.1:8103:8103"
     restart: unless-stopped
     networks:
       - aegisnet
@@ -111,31 +111,98 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "127.0.0.1:9090:9090"
     restart: unless-stopped
     networks:
       - aegisnet
 
   grafana:
+    image: grafana/grafana:latest
     container_name: aegis_grafana
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
       GF_PATHS_PROVISIONING: /etc/grafana/provisioning
       GF_INSTALL_PLUGINS: grafana-piechart-panel
-    image: grafana/grafana:latest
-    networks:
-      aegisnet: null
     ports:
-      - mode: ingress
-        target: 3000
-        published: "3000"
-        protocol: tcp
+      - "127.0.0.1:3000:3000"
     restart: unless-stopped
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - aegisnet
+
+  intelligence-api:
+    image: aegis-intelligence:1.0.0
+    build:
+      context: ./intelligence
+      dockerfile: Dockerfile
+    environment:
+      AEGIS_MANAGER_URL: http://manager:8001
+      AEGIS_DB_PATH: /app/data/aegis.db
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
+    ports:
+      - "127.0.0.1:8010:8010"
+    volumes:
+      - telemetry_data:/app/data
+    depends_on:
+      manager:
+        condition: service_healthy
+    networks:
+      - aegisnet
+      - intelligence
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/healthz', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  dashboard:
+    image: aegis-intelligence:1.0.0
+    command:
+      - python
+      - -m
+      - streamlit
+      - run
+      - dashboard/main.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+      - --server.headless=true
+    environment:
+      AEGIS_AI_API_URL: http://intelligence-api:8010
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      intelligence-api:
+        condition: service_healthy
+    networks:
+      - intelligence
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  telemetry_data:
+    name: ${AEGIS_TELEMETRY_VOLUME:-aegis_telemetry_data}
+
 networks:
   aegisnet:
     driver: bridge
-
+  intelligence:
+    driver: bridge

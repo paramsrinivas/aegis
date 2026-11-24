@@ -1,4 +1,13 @@
-# Aegis AI
+# Aegis Intelligence
+
+> **Deployment note:** This directory is the intelligence
+> layer of the unified Aegis platform. For the recommended
+> nine-service Docker deployment, follow the
+> [root README](../README.md).
+>
+> The standalone setup instructions below are retained
+> for independent intelligence-layer development.
+
 
 **Enterprise Incident Intelligence Platform**
 

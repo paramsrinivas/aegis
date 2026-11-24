@@ -1,0 +1,51 @@
+.git
+.gitignore
+
+# Separate intelligence build context
+intelligence/
+
+# Credentials
+.env
+.env.*
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/secrets.toml
+
+# Python environments
+.venv/
+venv/
+**/.venv/
+**/venv/
+
+# Python caches
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Runtime files
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.sqlite3
+**/*.sqlite3-wal
+**/*.sqlite3-shm
+**/*.log
+
+# Development files
+**/.DS_Store
+**/.vscode/
+**/.idea/
+**/*.bak
+**/*.swp
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Temporary files
+tmp/

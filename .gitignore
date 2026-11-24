@@ -1,20 +1,31 @@
-# Python cache
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+**/secrets.toml
+
+# Python caches
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Virtual environments
 .venv/
 venv/
 env/
 
-# macOS system files
+# macOS
 .DS_Store
 
-# Docker local stuff
+# Docker local files
 *.log
 **/.docker/
 
-# Bench + analysis output
+# Benchmark and analysis output
 bench/*.csv
 analysis/*.png
 results/
@@ -24,3 +35,24 @@ tmp/
 *.zip
 *.tar
 *.tar.gz
+
+# Runtime databases
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Intelligence runtime files
+intelligence/data/
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Editor and backup files
+.vscode/
+.idea/
+*.bak
+*.swp
