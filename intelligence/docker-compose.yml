@@ -1,0 +1,87 @@
+name: aegis-ai
+
+services:
+  api:
+    image: aegis-ai:1.0.0-rc1
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      AEGIS_MANAGER_URL: http://manager:8001
+      AEGIS_DB_PATH: /app/data/aegis.db
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
+
+    ports:
+      - "127.0.0.1:8010:8010"
+
+    volumes:
+      - telemetry_data:/app/data
+
+    networks:
+      - intelligence
+      - aegis_infrastructure
+
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/healthz', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+    restart: unless-stopped
+
+  dashboard:
+    image: aegis-ai:1.0.0-rc1
+
+    command:
+      - python
+      - -m
+      - streamlit
+      - run
+      - dashboard/main.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+      - --server.headless=true
+
+    environment:
+      AEGIS_AI_API_URL: http://api:8010
+
+    ports:
+      - "127.0.0.1:8501:8501"
+
+    depends_on:
+      api:
+        condition: service_healthy
+
+    networks:
+      - intelligence
+
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+    restart: unless-stopped
+
+volumes:
+  telemetry_data:
+
+networks:
+  intelligence:
+    driver: bridge
+
+  aegis_infrastructure:
+    external: true
+    name: ${AEGIS_DOCKER_NETWORK:-aegis_aegisnet}

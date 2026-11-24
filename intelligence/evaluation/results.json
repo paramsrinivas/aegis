@@ -1,0 +1,196 @@
+{
+  "evaluation_type": "offline_controlled",
+  "live_model_evaluated": false,
+  "threshold_ms": 100.0,
+  "metrics": {
+    "incident_scenarios": 8,
+    "incident_scenarios_passed": 8,
+    "diagnostic_checks": 64,
+    "diagnostic_checks_passed": 64,
+    "adversarial_cases": 10,
+    "adversarial_cases_rejected": 10,
+    "adversarial_rejection_rate_pct": 100.0,
+    "runtime_ms": 2.95
+  },
+  "incident_results": [
+    {
+      "scenario": "healthy_infrastructure",
+      "severity": "none",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "elevated_latency",
+      "severity": "medium",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "single_backend_failure",
+      "severity": "high",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "complete_backend_failure",
+      "severity": "critical",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "missing_telemetry",
+      "severity": "unknown",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "mixed_incident",
+      "severity": "high",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "threshold_boundary",
+      "severity": "none",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    },
+    {
+      "scenario": "multiple_slow_backends",
+      "severity": "medium",
+      "checks": {
+        "severity_correct": true,
+        "findings_correct": true,
+        "evidence_consistent": true,
+        "observations_consistent": true,
+        "hypotheses_unconfirmed": true,
+        "fallback_preserves_evidence": true,
+        "fallback_has_no_hypotheses": true,
+        "read_only_safety": true
+      },
+      "passed": true
+    }
+  ],
+  "adversarial_results": [
+    {
+      "scenario": "fabricated_evidence",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "invented_hypothesis",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "wrong_backend",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "confirmed_root_cause",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "fabricated_cpu_metric",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "unauthorized_action",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "duplicate_hypothesis",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "empty_evidence",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "malformed_output",
+      "rejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "severity_override",
+      "rejected": true,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Controlled synthetic telemetry.",
+    "Simulated model outputs.",
+    "Does not measure live Gemini accuracy.",
+    "Does not establish confirmed root causes.",
+    "Results apply only to evaluated scenarios."
+  ]
+}
