@@ -305,3 +305,85 @@ The platform is a locally developed engineering prototype, not a production-cert
 | v0.5.0 | Interactive incident intelligence dashboard |
 
 Aegis AI demonstrates infrastructure integration, applied AI reliability, backend engineering, operational analytics and human-in-the-loop incident investigation.
+## Docker Deployment
+
+### Prerequisites
+
+- Docker Engine and Docker Compose v2
+- Running Aegis infrastructure
+- Existing Aegis Docker network (`aegis_aegisnet` by default)
+
+The containerized API communicates with the Aegis manager at `http://manager:8001`.
+
+### Configuration
+
+```bash
+test -f .env || cp .env.example .env
+chmod 600 .env
+```
+
+Configure the optional Gemini API key in `.env`. Deterministic diagnostics remain available without an API key.
+
+Stop any native application processes occupying ports 8010 and 8501 before starting the containers.
+
+### Build and Start
+
+```bash
+docker compose config --quiet
+docker compose build api
+docker compose up -d --no-build --wait
+docker compose ps
+```
+
+| Service | URL |
+|---|---|
+| Dashboard | http://127.0.0.1:8501 |
+| FastAPI | http://127.0.0.1:8010 |
+| Interactive API documentation | http://127.0.0.1:8010/docs |
+
+Both services run as non-root containers and publish their ports to localhost.
+
+### Deployment Verification
+
+```bash
+curl -fsS http://127.0.0.1:8010/healthz
+curl -fsS http://127.0.0.1:8501/_stcore/health
+curl -fsS http://127.0.0.1:8010/investigate
+```
+
+### Persistent Storage
+
+Telemetry snapshots and incident records are stored in a Docker named volume, separate from the native application's database.
+
+Stop the deployment while preserving stored data:
+
+```bash
+docker compose down
+```
+
+Do not use `docker compose down -v` unless intentionally deleting persisted telemetry.
+
+### Container Regression Tests
+
+```bash
+docker run --rm \
+  -v "$PWD/tests:/app/tests:ro" \
+  aegis-ai:1.0.0-rc1 \
+  python -m pytest -q -p no:cacheprovider
+```
+
+### Verified Deployment Results
+
+| Validation | Result |
+|---|---|
+| Native macOS regression tests | 232 passed |
+| Linux ARM64 container regression tests | 232 passed |
+| Synthetic incident scenarios | 8/8 passed |
+| Deterministic diagnostic checks | 64/64 passed |
+| Adversarial simulated outputs rejected | 10/10 |
+| Live containerized Gemini integration | Passed |
+| Live provider retry recovery | Verified |
+| Container recreation persistence | 5 snapshots and 1 incident preserved |
+| Incident deduplication | 5 observations consolidated into 1 incident |
+
+The deployment was tested using Docker and Colima on macOS with Linux ARM64 containers. These results demonstrate functionality within the tested environment, not production-scale performance or general LLM accuracy.

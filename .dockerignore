@@ -1,0 +1,49 @@
+# Version control
+.git
+.gitignore
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+.streamlit/secrets.toml
+
+# Virtual environments
+.venv/
+venv/
+
+# Python caches
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime data
+data/
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.sqlite3
+**/*.sqlite3-wal
+**/*.sqlite3-shm
+**/*.log
+
+# Development files
+.vscode/
+.idea/
+.DS_Store
+**/*.bak
+**/*.swp
+
+# Tests and evaluation
+tests/
+evaluation/
+.coverage
+htmlcov/
+
+# Documentation
+docs/
+README.md
